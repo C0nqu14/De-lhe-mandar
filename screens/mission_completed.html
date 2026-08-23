@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html lang="pt"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Missão Concluída - De Lhe Mandar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#964900",
+                      "tertiary-container": "#a44400",
+                      "surface-container-lowest": "#ffffff",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-primary-container": "#d3ddff",
+                      "on-surface": "#1c1b1b",
+                      "on-secondary-fixed": "#311300",
+                      "on-error-container": "#93000a",
+                      "on-tertiary-container": "#ffd4c1",
+                      "surface-container-highest": "#e5e2e1",
+                      "secondary-container": "#ff8928",
+                      "primary-container": "#1e5cc8",
+                      "error": "#ba1a1a",
+                      "surface-dim": "#dcd9d9",
+                      "on-error": "#ffffff",
+                      "secondary-fixed": "#ffdcc6",
+                      "outline-variant": "#c3c6d5",
+                      "outline": "#737784",
+                      "surface-container-high": "#eae7e7",
+                      "error-container": "#ffdad6",
+                      "on-primary-fixed": "#001946",
+                      "on-background": "#1c1b1b",
+                      "on-primary-fixed-variant": "#00419d",
+                      "on-secondary": "#ffffff",
+                      "on-secondary-fixed-variant": "#723600",
+                      "on-surface-variant": "#434653",
+                      "on-tertiary-fixed-variant": "#793000",
+                      "on-secondary-container": "#642f00",
+                      "background": "#fcf9f8",
+                      "surface-variant": "#e5e2e1",
+                      "primary": "#0044a3",
+                      "inverse-on-surface": "#f3f0ef",
+                      "tertiary": "#7e3300",
+                      "surface-container": "#f0eded",
+                      "on-tertiary-fixed": "#341100",
+                      "tertiary-fixed-dim": "#ffb692",
+                      "primary-fixed-dim": "#b0c6ff",
+                      "surface": "#fcf9f8",
+                      "inverse-surface": "#313030",
+                      "surface-container-low": "#f6f3f2",
+                      "inverse-primary": "#b0c6ff",
+                      "surface-bright": "#fcf9f8",
+                      "on-tertiary": "#ffffff",
+                      "on-primary": "#ffffff",
+                      "surface-tint": "#1858c4",
+                      "primary-fixed": "#d9e2ff",
+                      "secondary-fixed-dim": "#ffb786"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "container-padding-mobile": "16px",
+                      "gutter": "16px",
+                      "base": "8px",
+                      "stack-lg": "24px",
+                      "container-padding-desktop": "32px"
+              },
+              "fontFamily": {
+                      "headline-md": ["Inter"],
+                      "headline-lg": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "headline-lg-mobile": ["Inter"],
+                      "label-md": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .checkmark-animate {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: dash 0.8s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+            animation-delay: 0.2s;
+        }
+        @keyframes dash {
+            from { stroke-dashoffset: 100; }
+            to { stroke-dashoffset: 0; }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col font-body-md">
+<!-- Navigation -->
+<header class="bg-surface flex items-center px-container-padding-mobile h-14 w-full sticky top-0 z-50">
+<span class="material-symbols-outlined text-on-surface cursor-pointer p-2 -ml-2">close</span>
+<h1 class="ml-4 font-headline-md text-[18px] text-primary">De Lhe Mandar</h1>
+</header>
+<main class="flex-grow flex flex-col items-center justify-center px-container-padding-mobile py-8">
+<!-- Success State Visualization -->
+<div class="w-full max-w-sm bg-surface-container-lowest rounded-[32px] p-8 shadow-sm border border-outline-variant/30 flex flex-col items-center text-center">
+<!-- Animated Success Icon -->
+<div class="relative mb-6 flex items-center justify-center w-20 h-20 bg-green-50 rounded-full">
+<svg class="w-12 h-12 text-green-500" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewbox="0 0 24 24">
+<polyline class="checkmark-animate" points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile mb-2 text-on-surface">Missão Concluída!</h2>
+<p class="font-body-md text-on-surface-variant mb-8">
+                Obrigado por usar o De Lhe Mandar.<br/>Poupou <span class="font-bold text-primary">45 minutos</span> hoje!
+            </p>
+<!-- Summary Card -->
+<div class="w-full bg-surface-container-low rounded-2xl p-6 mb-8 flex flex-col gap-3">
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-label-md">Valor do Serviço</span>
+<span class="text-on-surface font-body-md font-semibold">5.500 Kz</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface-variant font-label-md">Taxa da Plataforma</span>
+<span class="text-on-surface font-body-md font-semibold">250 Kz</span>
+</div>
+<div class="h-px bg-outline-variant/30 w-full my-1"></div>
+<div class="flex justify-between items-center">
+<span class="text-on-surface font-headline-md text-[18px]">Total Pago</span>
+<span class="text-primary font-headline-md text-[20px]">5.750 Kz</span>
+</div>
+</div>
+<!-- Executor Summary -->
+<div class="flex items-center gap-3 w-full p-4 mb-8 border border-outline-variant/30 rounded-2xl bg-white/50">
+<img alt="Emanuel dos Santos" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCq7spnZJJKyZlI6Xqlzx9kI9KVNYdZTMiMy3hLg6zv2yJkFkygoTEEo5Jvsi6hjcE3QTWy5kPz6a-UxHZDeghfF1ucCrcVAfddichEO8oz1QuU2_QZsA9WvLQKUe4doyey5nQnr1XnnjHHCI9e0wiOgUZtAa6_oHo49R1sIXBDIiWcYD-tivip-QZSgHGmlD9IuivmVgT5DAkmOOqEsqXVG0wXiVpmWZSg_cJz_sSbZfGu5Kmc_eDf"/>
+<div class="flex flex-col text-left flex-grow">
+<span class="text-[12px] text-on-surface-variant font-medium">Executor</span>
+<span class="font-body-md font-bold text-on-surface leading-tight">Emanuel dos Santos</span>
+</div>
+<div class="flex items-center bg-secondary-fixed px-2 py-1 rounded-lg">
+<span class="material-symbols-outlined text-[14px] text-on-secondary-fixed mr-1" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-[12px] font-bold text-on-secondary-fixed">4.9</span>
+</div>
+</div>
+<!-- Main CTA -->
+<button class="w-full h-14 bg-secondary-container text-on-secondary-container rounded-full font-bold text-body-lg active:scale-95 transition-transform flex items-center justify-center gap-2 mb-4 shadow-sm" onclick="window.location.href='{{DATA:SCREEN:SCREEN_18}}'">
+                Avaliar Executor
+                <span class="material-symbols-outlined">star_rate</span>
+</button>
+<!-- Reciept Link -->
+<button class="w-full py-2 text-primary font-label-md hover:underline transition-all">
+                Ver detalhes do recibo
+            </button>
+</div>
+</main>
+<script>
+        // Trigger confetti micro-interaction for extra celebration
+        function createConfetti() {
+            const container = document.body;
+            const colors = ['#ff8928', '#1e5cc8', '#ffb786', '#b0c6ff'];
+            for (let i = 0; i < 40; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'absolute w-2 h-2 rounded-full pointer-events-none z-0';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                container.appendChild(confetti);
+
+                const duration = 2 + Math.random() * 3;
+                confetti.animate([
+                    { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+                    { transform: `translate(${Math.random() * 100 - 50}px, 100vh) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    easing: 'cubic-bezier(0, 0, 0.2, 1)',
+                    fill: 'forwards'
+                });
+
+                setTimeout(() => confetti.remove(), duration * 1000);
+            }
+        }
+
+        window.addEventListener('load', () => {
+            setTimeout(createConfetti, 400);
+        });
+    </script>
+</body></html>

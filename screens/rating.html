@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="pt-AO"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .star-active {
+            font-variation-settings: 'FILL' 1 !important;
+            color: #ff8928 !important; /* secondary-container / Orange */
+        }
+        .rating-star {
+            cursor: pointer;
+            transition: transform 0.15s ease-in-out;
+        }
+        .rating-star:active {
+            transform: scale(0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-highest": "#e5e2e1",
+                        "on-secondary": "#ffffff",
+                        "on-primary-fixed": "#001946",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "tertiary-fixed": "#ffdbcb",
+                        "secondary-fixed": "#ffdcc6",
+                        "on-surface": "#1c1b1b",
+                        "on-error": "#ffffff",
+                        "surface-bright": "#fcf9f8",
+                        "primary-fixed": "#d9e2ff",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "secondary-fixed-dim": "#ffb786",
+                        "tertiary-container": "#a44400",
+                        "surface": "#fcf9f8",
+                        "on-surface-variant": "#434653",
+                        "primary-container": "#1e5cc8",
+                        "on-background": "#1c1b1b",
+                        "on-tertiary-fixed-variant": "#793000",
+                        "on-secondary-container": "#642f00",
+                        "background": "#fcf9f8",
+                        "on-primary-container": "#d3ddff",
+                        "secondary-container": "#ff8928",
+                        "secondary": "#964900",
+                        "surface-container": "#f0eded",
+                        "surface-dim": "#dcd9d9",
+                        "on-error-container": "#93000a",
+                        "outline": "#737784",
+                        "surface-variant": "#e5e2e1",
+                        "tertiary": "#7e3300",
+                        "on-secondary-fixed-variant": "#723600",
+                        "on-tertiary-container": "#ffd4c1",
+                        "inverse-surface": "#313030",
+                        "inverse-on-surface": "#f3f0ef",
+                        "error": "#ba1a1a",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-fixed-variant": "#00419d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-low": "#f6f3f2",
+                        "primary": "#0044a3",
+                        "inverse-primary": "#b0c6ff",
+                        "surface-container-high": "#eae7e7",
+                        "outline-variant": "#c3c6d5",
+                        "error-container": "#ffdad6",
+                        "on-secondary-fixed": "#311300",
+                        "on-primary": "#ffffff",
+                        "surface-tint": "#1858c4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "container-padding-mobile": "16px",
+                        "base": "8px",
+                        "gutter": "16px",
+                        "stack-md": "16px",
+                        "stack-sm": "8px",
+                        "stack-lg": "24px",
+                        "container-padding-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body-md text-on-surface selection:bg-primary/20">
+<!-- Top Navigation Shell (Back only for focused task) -->
+<header class="bg-surface dark:bg-background docked full-width top-0 z-50 border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-container-padding-mobile py-2 w-full max-w-full">
+<button aria-label="Voltar" class="w-10 h-10 flex items-center justify-start text-on-surface-variant active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">De Lhe Mandar</span>
+<div class="w-10"></div> <!-- Spacer for symmetry -->
+</header>
+<main class="min-h-screen pt-20 pb-12 px-container-padding-mobile max-w-md mx-auto flex flex-col items-center">
+<!-- Header Section -->
+<section class="w-full text-center mb-stack-lg animate-in fade-in slide-in-from-bottom-4 duration-500">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Como foi a sua experiência?</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Avalie o serviço prestado para nos ajudar a melhorar.</p>
+</section>
+<!-- Executor Profile Card -->
+<section class="w-full mb-stack-lg">
+<div class="bg-surface-container-lowest p-6 rounded-[24px] border border-outline-variant shadow-[0_4px_24px_0_rgba(0,0,0,0.04)] flex flex-col items-center text-center">
+<div class="relative mb-4">
+<img class="w-24 h-24 rounded-full object-cover border-4 border-surface ring-1 ring-outline-variant" data-alt="A professional close-up portrait of a friendly Angolan man named Marcos A. in his 30s, wearing a clean, professional company polo shirt. He is smiling warmly in a bright, outdoor setting with soft sunlight, conveying reliability and trustworthiness. The image is crisp with a blurred background, following a high-end corporate minimalist aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7E-853pfix4PLvO7eTUkE3dNoIGHq2rhzzLa2N6l9Y6RRuXcCaMFbfkkc2wSLrVAIUMQUS5xH2dTjA1JT0fh91Au0ePWcbCqSUj009eT63aE8Xm4Oya7TCkLqmpR7CcmwBlhs30uZrQG-FquPQHf0ZSbrbia2U42_tM_vmP4rTBuqmbnNMeRvLdLTumx45a7iIdA3Q4gO1MBsSVvNBTZLftQXyTvoFABtz2PUt33L71h9eDniY0Uf">
+<div class="absolute bottom-0 right-0 bg-primary-container p-1 rounded-full border-2 border-surface">
+<span class="material-symbols-outlined text-white text-sm" style="font-variation-settings: 'FILL' 1;">verified</span>
+</div>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Marcos A.</h2>
+<p class="font-label-md text-label-md text-on-surface-variant mb-6">Executor de Missão</p>
+<!-- Stars Container -->
+<div class="flex gap-2 mb-2" id="star-rating-container">
+<span class="material-symbols-outlined text-[40px] text-outline-variant rating-star" data-rating="1">star</span>
+<span class="material-symbols-outlined text-[40px] text-outline-variant rating-star" data-rating="2">star</span>
+<span class="material-symbols-outlined text-[40px] text-outline-variant rating-star" data-rating="3">star</span>
+<span class="material-symbols-outlined text-[40px] text-outline-variant rating-star" data-rating="4">star</span>
+<span class="material-symbols-outlined text-[40px] text-outline-variant rating-star" data-rating="5">star</span>
+</div>
+<p class="font-label-sm text-label-sm text-secondary-container h-4" id="rating-text"></p>
+</div>
+</section>
+<!-- Form Section -->
+<section class="w-full space-y-stack-md">
+<div class="w-full">
+<label class="block font-label-md text-label-md text-on-surface mb-2 px-1" for="comment-box">O que correu bem?</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl p-4 font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all resize-none" id="comment-box" placeholder="Escreva aqui o seu comentário..." rows="4"></textarea>
+</div>
+<!-- Quick Chips for faster feedback -->
+<div class="flex flex-wrap gap-2 py-2">
+<button class="px-4 py-2 rounded-full border border-outline-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95">Pontualidade</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95">Educação</button>
+<button class="px-4 py-2 rounded-full border border-outline-variant font-label-md text-label-md hover:bg-surface-container-low transition-colors active:scale-95">Rapidez</button>
+</div>
+</section>
+<!-- Actions -->
+<footer class="w-full mt-auto pt-stack-lg space-y-4">
+<button class="w-full h-14 bg-secondary-container hover:bg-secondary text-white font-label-md text-lg rounded-full flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-all">
+                Submeter Avaliação
+            </button>
+<button class="w-full py-2 font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors text-center underline-offset-4 active:scale-95">
+                Saltar por agora
+            </button>
+</footer>
+</main>
+<!-- Success Toast (Hidden by default) -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 bg-inverse-surface text-inverse-on-surface px-6 py-3 rounded-full flex items-center gap-3 shadow-2xl translate-y-32 transition-transform duration-500 z-[100]" id="success-toast">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<span class="font-label-md text-label-md">Obrigado pelo seu feedback!</span>
+</div>
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const stars = document.querySelectorAll('.rating-star');
+            const ratingText = document.getElementById('rating-text');
+            const submitBtn = document.querySelector('button.bg-secondary-container');
+            const skipBtn = document.querySelector('button.text-on-surface-variant');
+            const toast = document.getElementById('success-toast');
+            
+            const ratingLabels = {
+                1: 'Muito Fraco',
+                2: 'Fraco',
+                3: 'Razoável',
+                4: 'Muito Bom',
+                5: 'Excelente!'
+            };
+
+            stars.forEach(star => {
+                star.addEventListener('click', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'));
+                    
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.classList.add('star-active');
+                        } else {
+                            s.classList.remove('star-active');
+                        }
+                    });
+
+                    ratingText.innerText = ratingLabels[rating];
+                });
+
+                // Hover effect for desktop
+                star.addEventListener('mouseenter', () => {
+                    const rating = parseInt(star.getAttribute('data-rating'));
+                    stars.forEach((s, index) => {
+                        if (index < rating) {
+                            s.style.opacity = '0.7';
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseleave', () => {
+                    stars.forEach(s => s.style.opacity = '1');
+                });
+            });
+
+            submitBtn.addEventListener('click', () => {
+                // Animation for feedback
+                toast.classList.remove('translate-y-32');
+                toast.classList.add('translate-y-0');
+                
+                setTimeout(() => {
+                    toast.classList.add('translate-y-32');
+                    toast.classList.remove('translate-y-0');
+                }, 3000);
+            });
+
+            // Quick chips selection
+            const chips = document.querySelectorAll('.flex.flex-wrap.gap-2 button');
+            chips.forEach(chip => {
+                chip.addEventListener('click', () => {
+                    chip.classList.toggle('bg-primary-container');
+                    chip.classList.toggle('text-white');
+                    chip.classList.toggle('border-transparent');
+                });
+            });
+        });
+    </script>
+</body></html>

@@ -1,0 +1,5 @@
+import { router } from 'expo-router';
+import { Pressable, SafeAreaView, StyleSheet, Text } from 'react-native';
+import { Colors } from '@/constants/Colors';
+export default function RegisterScreen() { return <SafeAreaView style={styles.safe}><Text style={styles.title}>Crie a sua conta</Text><Text style={styles.copy}>Escolha como quer usar o De Lhe Mandar.</Text><Pressable style={styles.button} onPress={() => router.replace('/(auth)/login')}><Text style={styles.buttonText}>Continuar</Text></Pressable></SafeAreaView>; }
+const styles = StyleSheet.create({ safe: { flex: 1, backgroundColor: '#FCF9F8', padding: 24, paddingTop: 100 }, title: { color: Colors.light.text, fontSize: 30, fontWeight: '800' }, copy: { color: Colors.light.icon, marginTop: 8, fontSize: 16 }, button: { height: 55, backgroundColor: Colors.light.secondary, borderRadius: 13, alignItems: 'center', justifyContent: 'center', marginTop: 35 }, buttonText: { color: '#FFF', fontWeight: '800', fontSize: 16 } });

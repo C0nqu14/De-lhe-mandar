@@ -1,0 +1,6 @@
+export type MissionStatus = 'CREATED' | 'AVAILABLE' | 'ACCEPTED' | 'IN_PROGRESS' | 'AWAITING_CONFIRMATION' | 'COMPLETED' | 'CANCELLED' | 'DISPUTED';
+export type MissionCheckpoint = { status: MissionStatus; timestamp: string; description: string };
+export type MissionLocation = { latitude: number; longitude: number; address?: string };
+export type ExecutorLocation = { latitude: number; longitude: number; accuracy?: number; updatedAt: string };
+export type Mission = { id: string; title: string; description: string; location: string; scheduledAt: string; serviceAmount: number; purchaseAmount: number; totalAmount: number; clientId: string; executorId?: string; status: MissionStatus; createdAt: string; acceptedAt?: string; startedAt?: string; completedAt?: string; checkpoints: MissionCheckpoint[]; confirmationCode?: string; confirmationToken?: string; confirmationCodeUsed?: boolean; destinationLocation?: MissionLocation; executorLocation?: ExecutorLocation };
+export const statusLabels: Record<MissionStatus, string> = { CREATED: 'Criada', AVAILABLE: 'Disponível', ACCEPTED: 'Aceite', IN_PROGRESS: 'Em execução', AWAITING_CONFIRMATION: 'Confirmação pendente', COMPLETED: 'Concluída', CANCELLED: 'Cancelada', DISPUTED: 'Em disputa' };

@@ -1,0 +1,225 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>De Lhe Mandar - Login</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001946",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "secondary-fixed": "#ffdcc6",
+                    "on-surface": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "primary-fixed": "#d9e2ff",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "secondary-fixed-dim": "#ffb786",
+                    "tertiary-container": "#a44400",
+                    "surface": "#fcf9f8",
+                    "on-surface-variant": "#434653",
+                    "primary-container": "#1e5cc8",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "on-secondary-container": "#642f00",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#d3ddff",
+                    "secondary-container": "#ff8928",
+                    "secondary": "#964900",
+                    "surface-container": "#f0eded",
+                    "surface-dim": "#dcd9d9",
+                    "on-error-container": "#93000a",
+                    "outline": "#737784",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary": "#7e3300",
+                    "on-secondary-fixed-variant": "#723600",
+                    "on-tertiary-container": "#ffd4c1",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#00419d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-low": "#f6f3f2",
+                    "primary": "#0044a3",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-container-high": "#eae7e7",
+                    "outline-variant": "#c3c6d5",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#311300",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#1858c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "container-padding-desktop": "32px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf9f8;
+            color: #1c1b1b;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .social-button {
+            transition: all 0.2s ease;
+        }
+        .social-button:active {
+            transform: scale(0.98);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col items-center">
+<!-- Top AppBar (Simplified for Login Transactional flow) -->
+<nav class="w-full max-w-full flex items-center justify-between px-container-padding-mobile py-4 bg-surface z-50">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl">arrow_back</span>
+</div>
+<div class="font-headline-md text-headline-md-mobile font-bold text-primary">De Lhe Mandar</div>
+<div class="w-10"></div> <!-- Spacer for balance -->
+</nav>
+<main class="w-full max-w-md px-container-padding-mobile mt-stack-lg flex-1 flex flex-col">
+<!-- Header Section -->
+<header class="mb-stack-lg">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">Bem-vindo de volta</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Inicie sessão para gerir as suas missões e tarefas em Angola.</p>
+</header>
+<!-- Login Form -->
+<form action="#" class="flex flex-col gap-gutter" method="POST">
+<!-- Phone Number Input -->
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="phone">Número de Telefone</label>
+<div class="relative flex items-center h-[56px] border border-outline-variant rounded-xl bg-surface-container-lowest focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all overflow-hidden">
+<div class="flex items-center px-4 border-r border-outline-variant bg-surface-container-low h-full gap-2">
+<div class="w-6 h-4 bg-cover bg-center rounded-sm" data-alt="A small, crisp representation of the Angolan national flag showing the red and black horizontal bands with the golden machete and gear emblem. The style is clean and iconographic, suitable for a professional mobile application interface." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuDz0vVtVvumFkojZgSmouN9DtiFNbKG4kv-qQwbc8AxzuGcT4Ue7e49CEG30BhP5id6-O4oiPDs3Utt2nbricNHWk9wV9LE792qNFXrbcBzVyYdUq5IIfjegsMpZo1o_VJIglTz8qmew7i2KKymCaTJYo3ZHBB9z-jtpF9P2SrM5hpAbPkgvJ5-vRQY_Vvl8SuyAgvl2s2dHzVgyIY9dRsGWNisN0kvMs4t-IgvgEPjGsw9RnoDg2ba')"></div>
+<span class="font-body-md text-body-md text-on-surface-variant">+244</span>
+</div>
+<input class="flex-1 bg-transparent border-none focus:ring-0 px-4 font-body-md text-body-md text-on-surface placeholder:text-outline" id="phone" name="phone" placeholder="923 000 000" required="" type="tel">
+</div>
+</div>
+<!-- Password Input -->
+<div class="flex flex-col gap-2">
+<div class="flex justify-between items-center">
+<label class="font-label-md text-label-md text-on-surface-variant" for="password">Palavra-passe</label>
+<a class="font-label-sm text-label-sm text-primary hover:underline" href="#">Esqueceu a palavra-passe?</a>
+</div>
+<div class="relative flex items-center h-[56px] border border-outline-variant rounded-xl bg-surface-container-lowest focus-within:border-primary focus-within:ring-1 focus-within:ring-primary transition-all">
+<input class="w-full bg-transparent border-none focus:ring-0 px-4 font-body-md text-body-md text-on-surface placeholder:text-outline" id="password" name="password" placeholder="Sua palavra-passe" required="" type="password">
+<button class="px-4 text-on-surface-variant active:scale-95 transition-transform" onclick="togglePasswordVisibility()" type="button">
+<span class="material-symbols-outlined" id="password-toggle-icon">visibility</span>
+</button>
+</div>
+</div>
+<!-- Primary Action Button -->
+<button class="mt-4 h-[56px] bg-primary text-on-primary rounded-full font-label-md text-label-md font-bold shadow-md active:scale-95 transition-transform" type="submit">
+                Entrar
+            </button>
+</form>
+<!-- Divider -->
+<div class="flex items-center gap-4 my-stack-lg">
+<div class="h-[1px] flex-1 bg-outline-variant/50"></div>
+<span class="font-label-sm text-label-sm text-outline">ou continuar com</span>
+<div class="h-[1px] flex-1 bg-outline-variant/50"></div>
+</div>
+<!-- Social Login Grid -->
+<div class="grid grid-cols-2 gap-stack-md mb-stack-lg">
+<button class="social-button flex items-center justify-center gap-3 h-[56px] border border-outline-variant rounded-xl bg-surface-container-lowest hover:bg-surface-container-low">
+<div class="w-6 h-6 bg-contain bg-center bg-no-repeat" data-alt="A clean and official Google 'G' logo in its iconic four colors (red, yellow, green, and blue) against a transparent background. The image is crisp, professional, and optimized for a modern digital UI." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBRjiAzTUbu52pRgaJIb5Kdf6DDrNvMdaRWjgqMsxHiX_rEkW6PRdZ6r7uOc18EWBv_Ny5StwnZ4iZr1qdupu8gHL-lqZfjzGQyebP6uu15drENdT0bMadlXS5ruwyLHAkUVT_1iqqcFMdc46wr1BToJcuVViPl48cMdo1Ti5F76Ea0R9HNzgmLFWNKNThqjDLQle1YjPMb5B2vO77OtT9Dm0d4VDcX-9XcaAnvvzFmgp77q9kr5Cdn')"></div>
+<span class="font-label-md text-label-md text-on-surface">Google</span>
+</button>
+<button class="social-button flex items-center justify-center gap-3 h-[56px] border border-outline-variant rounded-xl bg-surface-container-lowest hover:bg-surface-container-low">
+<div class="w-6 h-6 bg-contain bg-center bg-no-repeat" data-alt="The minimalist Apple logo in solid black, representing high-end tech aesthetics. The icon is perfectly centered and sharp, suitable for a professional authentication screen in a clean white-themed application." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuChYMzFkZw_YOmNKXEBPG3SqG8WnS5_ue6-sc7vAvql9jtxVQvJkqiwPmGbKtH5TuWLMHUnejWaJtHn83JlelNxlt7Cwe_Vmhwkid5DJ9omdG2JnR1HHcJRn5vA2g1zuMQMEtFOQ8PUHYxRWJLVqo1XA_Qu5dE_nFOxD3c7So2SPyGdNeInF_R-FOygOaWxKNA-20_-DM0H2jiMPP7c061W_oD9Eq1hwKxit9uJIepCNKB0wXnL4mzq')"></div>
+<span class="font-label-md text-label-md text-on-surface">Apple</span>
+</button>
+</div>
+<!-- Footer Link -->
+<div class="mt-auto py-8 text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                Não tem conta? 
+                <a class="text-primary font-bold hover:underline" href="#">Criar conta</a>
+</p>
+</div>
+</main>
+<!-- Visual Polish: Soft Decorative Gradient -->
+<div class="fixed bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-primary/5 to-transparent -z-10 pointer-events-none"></div>
+<script>
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.getElementById('password-toggle-icon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.innerText = 'visibility_off';
+            } else {
+                passwordInput.type = 'password';
+                toggleIcon.innerText = 'visibility';
+            }
+        }
+
+        // Form submission micro-interaction
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalContent = btn.innerHTML;
+            btn.innerHTML = '<span class="flex items-center justify-center"><svg class="animate-spin h-5 w-5 mr-3 text-white" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> A processar...</span>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('Funcionalidade de demonstração: Autenticação iniciada.');
+                btn.innerHTML = originalContent;
+                btn.disabled = false;
+            }, 1500);
+        });
+    </script>
+</body></html>

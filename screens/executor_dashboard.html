@@ -1,0 +1,301 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>De Lhe Mandar - Painel do Executor</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .active-pill {
+            font-variation-settings: 'FILL' 1;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed": "#341100",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary": "#964900",
+                        "inverse-on-surface": "#f3f0ef",
+                        "error": "#ba1a1a",
+                        "on-primary-container": "#d3ddff",
+                        "inverse-primary": "#b0c6ff",
+                        "secondary-container": "#ff8928",
+                        "surface": "#fcf9f8",
+                        "background": "#fcf9f8",
+                        "outline": "#737784",
+                        "surface-variant": "#e5e2e1",
+                        "surface-container": "#f0eded",
+                        "surface-container-highest": "#e5e2e1",
+                        "surface-tint": "#1858c4",
+                        "on-primary": "#ffffff",
+                        "primary": "#0044a3",
+                        "on-background": "#1c1b1b",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f6f3f2",
+                        "inverse-surface": "#313030",
+                        "primary-container": "#1e5cc8",
+                        "surface-container-high": "#eae7e7",
+                        "surface-bright": "#fcf9f8",
+                        "on-tertiary": "#ffffff",
+                        "tertiary-fixed-dim": "#ffb692",
+                        "on-secondary": "#ffffff",
+                        "surface-dim": "#dcd9d9",
+                        "on-secondary-fixed": "#311300",
+                        "on-surface-variant": "#434653",
+                        "secondary-fixed-dim": "#ffb786",
+                        "primary-fixed": "#d9e2ff",
+                        "on-secondary-fixed-variant": "#723600",
+                        "tertiary-fixed": "#ffdbcb",
+                        "tertiary": "#7e3300",
+                        "outline-variant": "#c3c6d5",
+                        "on-surface": "#1c1b1b",
+                        "on-primary-fixed-variant": "#00419d",
+                        "primary-fixed-dim": "#b0c6ff",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed-variant": "#793000",
+                        "tertiary-container": "#a44400",
+                        "on-secondary-container": "#642f00",
+                        "on-error-container": "#93000a",
+                        "on-primary-fixed": "#001946",
+                        "secondary-fixed": "#ffdcc6",
+                        "on-tertiary-container": "#ffd4c1"
+                    },
+                    "spacing": {
+                        "container-padding-mobile": "16px",
+                        "container-padding-desktop": "32px",
+                        "base": "8px",
+                        "stack-sm": "8px",
+                        "gutter": "16px",
+                        "stack-lg": "24px",
+                        "stack-md": "16px"
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-surface fixed top-0 z-50 w-full border-b border-outline-variant/50 shadow-sm">
+<div class="flex items-center justify-between px-container-padding-mobile py-4 w-full max-w-full">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img class="w-full h-full object-cover" data-alt="A professional portrait of a confident male courier in Luanda, wearing a clean branded polo shirt. He is smiling warmly in a bright, modern corporate office environment with high-trust vibes. The lighting is soft and natural, emphasizing the professional and reliable nature of the service. The color palette is dominated by primary blues and clean whites." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDP5GO3ALQkF70g6Jgc5kisFc7tioJeLxM9wQIx49lBIbZjtzF7aBR4EpjjsVYYuyGPydhzI8uiMW9qd89XRhnm5iB_wWNXc9FNLCltmAry7wMHuCwWYraV5UeTPD157mHxSy63WdaguK1w2aJTSi11uUVvqBsdNOmekm3okyXVPXIN3GtqpwVMXwdXsNlxL7l8nlPdDz-YYiR-8w96IudN4cFnlSQ5T3rtFlD3NU079MLWNU_Zp5cP">
+</div>
+<div class="flex flex-col">
+<span class="font-headline-md text-[14px] font-bold text-primary">De Lhe Mandar</span>
+<span class="text-[12px] text-on-surface-variant">Olá, João Manuel</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="bg-primary-container/10 px-3 py-1.5 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-[18px]">account_balance_wallet</span>
+<span class="font-bold text-primary text-[14px]">12.450 Kz</span>
+</div>
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-low p-2 rounded-full transition-colors active:scale-95">notifications</button>
+</div>
+</div>
+</header>
+<main class="pt-24 px-container-padding-mobile max-w-2xl mx-auto space-y-stack-lg">
+<!-- Daily Summary Widget -->
+<section class="bg-surface-container-lowest rounded-[24px] p-6 shadow-[0_4px_24px_0_rgba(0,0,0,0.04)] border border-outline-variant/30 overflow-hidden relative">
+<div class="relative z-10">
+<h3 class="font-bold text-[14px] text-on-surface-variant uppercase tracking-wider mb-2">Resumo de Hoje</h3>
+<div class="flex items-end justify-between">
+<div>
+<div class="flex items-baseline gap-1">
+<span class="text-[32px] font-extrabold text-on-background">5.000</span>
+<span class="text-[18px] font-bold text-on-surface-variant">Kz</span>
+</div>
+<p class="text-[13px] text-on-surface-variant mt-1">3 Missões Concluídas</p>
+</div>
+<div class="flex items-center gap-2 bg-success/10 text-[#008545] px-3 py-1 rounded-full text-[12px] font-bold">
+<span class="material-symbols-outlined text-[16px]">trending_up</span>
+                        +12% vs Ontem
+                    </div>
+</div>
+</div>
+<!-- Decorative wave element -->
+<div class="absolute -bottom-4 -right-4 opacity-5 pointer-events-none">
+<span class="material-symbols-outlined text-[120px] text-primary" style="font-variation-settings: 'FILL' 1;">insights</span>
+</div>
+</section>
+<!-- Navigation Tabs (Page Local) -->
+<nav class="flex items-center gap-2 overflow-x-auto hide-scrollbar -mx-4 px-4">
+<button class="bg-primary text-on-primary whitespace-nowrap px-6 py-2.5 rounded-full text-[14px] font-bold shadow-md transition-transform active:scale-95">Missões Disponíveis</button>
+<button class="bg-surface-container text-on-surface-variant whitespace-nowrap px-6 py-2.5 rounded-full text-[14px] font-medium hover:bg-surface-container-high transition-colors">Minhas Missões</button>
+<button class="bg-surface-container text-on-surface-variant whitespace-nowrap px-6 py-2.5 rounded-full text-[14px] font-medium hover:bg-surface-container-high transition-colors">Histórico</button>
+<button class="bg-surface-container text-on-surface-variant whitespace-nowrap px-6 py-2.5 rounded-full text-[14px] font-medium hover:bg-surface-container-high transition-colors">Ganhos</button>
+</nav>
+<!-- Mission Grid -->
+<div class="grid gap-gutter">
+<!-- Mission Card 1 (Urgent) -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-[20px] p-4 flex flex-col gap-4 shadow-sm hover:shadow-md transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-[12px] font-bold text-secondary uppercase tracking-tight flex items-center gap-1 mb-1">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">bolt</span>
+                            Urgente
+                        </span>
+<h4 class="text-[18px] font-bold text-on-background leading-tight">Entrega de Documentos Jurídicos</h4>
+</div>
+<div class="text-right">
+<span class="text-[20px] font-extrabold text-primary leading-none">8.500 Kz</span>
+<p class="text-[12px] text-on-surface-variant mt-1">Luanda Sul</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline">distance</span>
+<span class="text-[13px] font-medium text-on-surface">2.5km</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline">schedule</span>
+<span class="text-[13px] font-medium text-on-surface">20 min</span>
+</div>
+<div class="flex items-center gap-1.5 ml-auto">
+<span class="w-2 h-2 rounded-full bg-[#008545]"></span>
+<span class="text-[13px] font-medium text-[#008545]">Nível 1</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                    Aceitar Missão
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Mission Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-[20px] p-4 flex flex-col gap-4 shadow-sm hover:shadow-md transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="bg-primary/10 text-primary px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase w-fit mb-2">Logística</span>
+<h4 class="text-[18px] font-bold text-on-background leading-tight">Recolha de Encomenda IKEA</h4>
+</div>
+<div class="text-right">
+<span class="text-[20px] font-extrabold text-primary leading-none">5.200 Kz</span>
+<p class="text-[12px] text-on-surface-variant mt-1">Talatona</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline">distance</span>
+<span class="text-[13px] font-medium text-on-surface">4.8km</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline">inventory_2</span>
+<span class="text-[13px] font-medium text-on-surface">Volume Médio</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                    Aceitar Missão
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+<!-- Mission Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant/40 rounded-[20px] p-4 flex flex-col gap-4 shadow-sm hover:shadow-md transition-all active:scale-[0.98]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="bg-secondary-container/20 text-secondary px-2 py-0.5 rounded-md text-[10px] font-extrabold uppercase w-fit mb-2">Serviços</span>
+<h4 class="text-[18px] font-bold text-on-background leading-tight">Verificação de Localização</h4>
+</div>
+<div class="text-right">
+<span class="text-[20px] font-extrabold text-primary leading-none">3.000 Kz</span>
+<p class="text-[12px] text-on-surface-variant mt-1">Maianga</p>
+</div>
+</div>
+<div class="flex items-center gap-4 py-2 border-y border-outline-variant/20">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline">distance</span>
+<span class="text-[13px] font-medium text-on-surface">1.2km</span>
+</div>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[18px] text-outline">photo_camera</span>
+<span class="text-[13px] font-medium text-on-surface">3 fotos</span>
+</div>
+</div>
+<button class="w-full bg-primary text-on-primary py-3.5 rounded-xl font-bold text-[15px] flex items-center justify-center gap-2 active:scale-95 transition-transform">
+                    Aceitar Missão
+                    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar -->
+<nav class="fixed bottom-0 w-full z-50 bg-surface rounded-t-xl border-t border-outline-variant/30 shadow-[0_-4px_24px_0_rgba(0,0,0,0.04)] h-16 px-base pb-safe flex justify-around items-center">
+<!-- Home / Dashboard (Active) -->
+<a class="flex flex-col items-center justify-center text-primary font-bold active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined active-pill" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="text-[12px]">Home</span>
+</a>
+<!-- Missions -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">task</span>
+<span class="text-[12px]">Missões</span>
+</a>
+<!-- Alerts -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200 relative" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="text-[12px]">Alertas</span>
+<span class="absolute top-0 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface"></span>
+</a>
+<!-- Profile -->
+<a class="flex flex-col items-center justify-center text-on-surface-variant active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[12px]">Perfil</span>
+</a>
+</nav>
+<!-- Global Map Shortcut FAB -->
+<button class="fixed bottom-20 right-6 w-14 h-14 bg-secondary text-on-primary rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform z-40">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">map</span>
+</button>
+<script>
+        // Simple ripple/active state simulation for cards
+        document.querySelectorAll('button, a').forEach(elem => {
+            elem.addEventListener('mousedown', () => {
+                elem.classList.add('opacity-80');
+            });
+            elem.addEventListener('mouseup', () => {
+                elem.classList.remove('opacity-80');
+            });
+            elem.addEventListener('mouseleave', () => {
+                elem.classList.remove('opacity-80');
+            });
+        });
+
+        // Tab switching logic (Visual only)
+        const tabs = document.querySelectorAll('nav:not(.fixed) button');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('bg-primary', 'text-on-primary', 'shadow-md', 'font-bold');
+                    t.classList.add('bg-surface-container', 'text-on-surface-variant', 'font-medium');
+                });
+                tab.classList.remove('bg-surface-container', 'text-on-surface-variant', 'font-medium');
+                tab.classList.add('bg-primary', 'text-on-primary', 'shadow-md', 'font-bold');
+            });
+        });
+    </script>
+</body></html>

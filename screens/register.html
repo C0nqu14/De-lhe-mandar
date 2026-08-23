@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>De Lhe Mandar - Crie a sua conta</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001946",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "secondary-fixed": "#ffdcc6",
+                    "on-surface": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "primary-fixed": "#d9e2ff",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "secondary-fixed-dim": "#ffb786",
+                    "tertiary-container": "#a44400",
+                    "surface": "#fcf9f8",
+                    "on-surface-variant": "#434653",
+                    "primary-container": "#1e5cc8",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "on-secondary-container": "#642f00",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#d3ddff",
+                    "secondary-container": "#ff8928",
+                    "secondary": "#964900",
+                    "surface-container": "#f0eded",
+                    "surface-dim": "#dcd9d9",
+                    "on-error-container": "#93000a",
+                    "outline": "#737784",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary": "#7e3300",
+                    "on-secondary-fixed-variant": "#723600",
+                    "on-tertiary-container": "#ffd4c1",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#00419d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-low": "#f6f3f2",
+                    "primary": "#0044a3",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-container-high": "#eae7e7",
+                    "outline-variant": "#c3c6d5",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#311300",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#1858c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "container-padding-desktop": "32px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fcf9f8;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-shadow {
+            box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.04);
+        }
+        .input-focus-ring:focus {
+            outline: none;
+            border-color: #0044a3;
+            box-shadow: 0 0 0 1px #0044a3;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased min-h-screen flex flex-col">
+<!-- TopAppBar (Transactional/Focus State: Minimal) -->
+<header class="bg-surface dark:bg-background border-b border-outline-variant/50 shadow-sm dark:shadow-none docked full-width top-0 z-50 flex items-center justify-between px-container-padding-mobile py-2 w-full max-w-full">
+<div class="flex items-center gap-4">
+<button class="w-10 h-10 flex items-center justify-center hover:bg-surface-container-low transition-colors rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</button>
+<span class="font-headline-md text-headline-md-mobile font-bold text-primary dark:text-primary-fixed">De Lhe Mandar</span>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A professional and clean user interface profile avatar placeholder against a soft grey background. The style is minimalist and high-corporate, reflecting a sense of security and trust for an Angolan service marketplace. High-key lighting highlights the smooth textures, maintaining a bright and modern light-mode aesthetic throughout." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC6vgltWwfjDEULi0-RDiSN6dmv1CICI55Lm94nNbDG6wdB8E7XBT2DbQQ_iQhge41tbrJPpkLe2wW32HOypIt2T3UwBXiacqGY0i4FY4NQFi77p4j8hTkktIuq16s8zz_l5-T6CrFOHZPOkFtTAk1LeSk9lu-HEKJV8vkBNFFy0zZzfxBIA7sVMUTrjw6hPGhNooEzOgBcT0oIHBgz-8x3oVc_kQMwA0qQwJAkukDlAjGAz8BuDfxy">
+</div>
+</header>
+<main class="flex-grow flex items-center justify-center px-container-padding-mobile py-stack-lg">
+<div class="w-full max-w-[440px] bg-white rounded-[24px] p-gutter md:p-stack-lg custom-shadow border border-[#E5E5E5]">
+<!-- Welcome Header -->
+<div class="mb-stack-lg text-center md:text-left">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface mb-2">Crie a sua conta</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Junte-se à maior rede de serviços e missões em Angola.</p>
+</div>
+<!-- Registration Form -->
+<form class="space-y-stack-md" onsubmit="return false;">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="full-name">Nome Completo</label>
+<div class="relative">
+<input class="w-full h-[56px] px-gutter bg-white border border-[#E5E5E5] rounded-xl font-body-md text-body-md input-focus-ring transition-all placeholder:text-outline/50" id="full-name" placeholder="Ex: Manuel António" type="text">
+</div>
+</div>
+<!-- Phone Number -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="phone">Número de Telefone</label>
+<div class="flex gap-2">
+<div class="h-[56px] flex items-center justify-center px-4 bg-surface-container-low border border-[#E5E5E5] rounded-xl font-label-md text-label-md text-on-surface-variant">
+                            +244
+                        </div>
+<input class="flex-grow h-[56px] px-gutter bg-white border border-[#E5E5E5] rounded-xl font-body-md text-body-md input-focus-ring transition-all placeholder:text-outline/50" id="phone" placeholder="9XX XXX XXX" type="tel">
+</div>
+</div>
+<!-- Referral Code -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface-variant block" for="referral">Código de Convite <span class="text-outline italic text-sm">(Opcional)</span></label>
+<input class="w-full h-[56px] px-gutter bg-white border border-[#E5E5E5] rounded-xl font-body-md text-body-md input-focus-ring transition-all placeholder:text-outline/50" id="referral" placeholder="Insira o código se tiver um" type="text">
+</div>
+<!-- Terms & Conditions -->
+<div class="flex items-start gap-3 py-2">
+<div class="flex items-center h-6">
+<input class="w-5 h-5 rounded border-outline-variant text-primary focus:ring-primary/20" id="terms" type="checkbox">
+</div>
+<label class="font-label-md text-label-md text-on-surface-variant leading-tight" for="terms">
+                        Aceito os <a class="text-primary font-bold hover:underline" href="#">Termos e Condições</a> e a Política de Privacidade.
+                    </label>
+</div>
+<!-- Primary Action -->
+<button class="w-full h-[56px] bg-primary text-white font-label-md text-label-md rounded-full shadow-md hover:bg-primary-container hover:text-on-primary-container transition-all active:scale-[0.98] mt-4" type="submit">
+                    Criar Conta
+                </button>
+</form>
+<!-- Divider -->
+<div class="my-stack-lg flex items-center gap-4">
+<div class="h-[1px] flex-grow bg-[#F0F0F0]"></div>
+<span class="font-label-sm text-label-sm text-outline uppercase tracking-wider">OU</span>
+<div class="h-[1px] flex-grow bg-[#F0F0F0]"></div>
+</div>
+<!-- Redirect to Login -->
+<div class="text-center">
+<p class="font-body-md text-body-md text-on-surface-variant">
+                    Já tem uma conta? 
+                    <a class="text-primary font-bold hover:underline transition-all" href="#">Entrar</a>
+</p>
+</div>
+</div>
+</main>
+<!-- Footer Trust Badges -->
+<footer class="py-stack-lg px-container-padding-mobile text-center">
+<div class="flex items-center justify-center gap-stack-md opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+<span class="text-[12px] font-medium">Segurança Garantida</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-[18px]">shield</span>
+<span class="text-[12px] font-medium">Dados Protegidos</span>
+</div>
+</div>
+<p class="mt-4 text-[11px] text-outline uppercase tracking-widest">© 2024 De Lhe Mandar LDA</p>
+</footer>
+<!-- Simple Interaction Script -->
+<script>
+        // Simple input validation visual feedback
+        const inputs = document.querySelectorAll('input[type="text"], input[type="tel"]');
+        inputs.forEach(input => {
+            input.addEventListener('blur', () => {
+                if (input.value.length > 0) {
+                    input.classList.add('border-primary-container');
+                } else {
+                    input.classList.remove('border-primary-container');
+                }
+            });
+        });
+
+        // Form Submission visual effect
+        document.querySelector('form').addEventListener('submit', (e) => {
+            const btn = e.target.querySelector('button');
+            const originalText = btn.innerText;
+            btn.innerHTML = '<span class="flex items-center justify-center gap-2"><svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg> Processando...</span>';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                alert('Funcionalidade de demonstração: Conta "criada" com sucesso!');
+            }, 1500);
+        });
+    </script>
+</body></html>

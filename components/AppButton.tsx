@@ -1,0 +1,4 @@
+import { Pressable, StyleSheet, Text } from 'react-native';
+import { Colors } from '@/constants/Colors';
+export function AppButton({ label, onPress, secondary = false }: { label: string; onPress: () => void; secondary?: boolean }) { return <Pressable onPress={onPress} style={[styles.button, secondary && styles.secondary]}><Text style={[styles.text, secondary && styles.secondaryText]}>{label}</Text></Pressable>; }
+const styles = StyleSheet.create({ button: { minHeight: 52, borderRadius: 13, backgroundColor: Colors.light.secondary, alignItems: 'center', justifyContent: 'center', paddingHorizontal: 18 }, secondary: { backgroundColor: '#EAF0FF' }, text: { color: '#FFF', fontWeight: '800', fontSize: 16 }, secondaryText: { color: Colors.light.tint } });

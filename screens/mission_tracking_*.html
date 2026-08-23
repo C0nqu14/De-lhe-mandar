@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+
+<html class="light" lang="pt-AO"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>De Lhe Mandar - Acompanhamento da Missão</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "secondary": "#964900",
+                    "tertiary-container": "#a44400",
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-primary-container": "#d3ddff",
+                    "on-surface": "#1c1b1b",
+                    "on-secondary-fixed": "#311300",
+                    "on-error-container": "#93000a",
+                    "on-tertiary-container": "#ffd4c1",
+                    "surface-container-highest": "#e5e2e1",
+                    "secondary-container": "#ff8928",
+                    "primary-container": "#1e5cc8",
+                    "error": "#ba1a1a",
+                    "surface-dim": "#dcd9d9",
+                    "on-error": "#ffffff",
+                    "secondary-fixed": "#ffdcc6",
+                    "outline-variant": "#c3c6d5",
+                    "outline": "#737784",
+                    "surface-container-high": "#eae7e7",
+                    "error-container": "#ffdad6",
+                    "on-primary-fixed": "#001946",
+                    "on-background": "#1c1b1b",
+                    "on-primary-fixed-variant": "#00419d",
+                    "on-secondary": "#ffffff",
+                    "on-secondary-fixed-variant": "#723600",
+                    "on-surface-variant": "#434653",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "on-secondary-container": "#642f00",
+                    "background": "#fcf9f8",
+                    "surface-variant": "#e5e2e1",
+                    "primary": "#0044a3",
+                    "inverse-on-surface": "#f3f0ef",
+                    "tertiary": "#7e3300",
+                    "surface-container": "#f0eded",
+                    "on-tertiary-fixed": "#341100",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "surface": "#fcf9f8",
+                    "inverse-surface": "#313030",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#1858c4",
+                    "primary-fixed": "#d9e2ff",
+                    "secondary-fixed-dim": "#ffb786"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "container-padding-mobile": "16px",
+                    "gutter": "16px",
+                    "base": "8px",
+                    "stack-lg": "24px",
+                    "container-padding-desktop": "32px"
+            },
+            "fontFamily": {
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "label-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        @keyframes pulse-ring {
+            0% { transform: scale(.33); }
+            80%, 100% { opacity: 0; }
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(.8); }
+            50% { transform: scale(1); }
+            100% { transform: scale(.8); }
+        }
+        .pulse-icon::before {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 300%;
+            height: 300%;
+            box-sizing: border-box;
+            margin-left: -100%;
+            margin-top: -100%;
+            border-radius: 45px;
+            background-color: #ff8928;
+            animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        .pulse-icon::after {
+            content: '';
+            position: absolute;
+            left: 0; 
+            top: 0;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: #964900;
+            border-radius: 15px;
+            animation: pulse-dot 1.25s cubic-bezier(0.455, 0.03, 0.515, 0.955) -0.4s infinite;
+        }
+        .map-gradient {
+            background: linear-gradient(180deg, rgba(252,249,248,0) 0%, rgba(252,249,248,1) 100%);
+        }
+        body {
+            min-height: 100dvh;
+        }
+    </style>
+</head>
+<body class="bg-background font-body-md text-on-surface">
+<!-- Sticky Header -->
+<header class="sticky top-0 z-50 bg-surface/80 backdrop-blur-md border-b border-outline-variant/30 px-container-padding-mobile py-3 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<button class="w-10 h-10 flex items-center justify-center rounded-full active:bg-surface-container transition-colors">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-primary">Detalhes da Missão</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/50">
+<img class="w-full h-full object-cover" data-alt="User Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxjEcAab5eugyBC6PkXSbUhWefUOdzs-PervNzlvVnM37rf5lg2qaqktJxv0WpTvQxV3ciUZeDJijbkDwiLiD5bYjlGWHp0hjPpGk4cPnz5CLmCOfw4QPUZo4wXfZftK-T261su7vNiQiyJHzPkEKRAMVqalwupVrpiLDAO_hEuCTpB__UjI5Yrq5xihfMcakMTwo8lyJ0PwrwarPzHNWkSuWdud6WbeZHhERyagD92dEh-QART92a"/>
+</div>
+</header>
+<main class="max-w-md mx-auto">
+<!-- Map View at Top -->
+<div class="relative h-[240px] w-full overflow-hidden">
+<div class="bg-cover bg-center w-full h-full" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAX5S6HJAFnrNd27tfbYM9kp4PDhId_5hNCSdfgZPKjUKVOIQUCwGY-uOPZmCOA3WcsFKvbRQ0Ym5hAMH6MMUcRx-8x8Iv8gytIGdQbuc-RiQXV3G4EgnFWW9nEM0nCV-rqfuOkMi3DTG4hxCwaF0UBdEVhG3oQZCpn5SanRM-bewZXj62h5MMs4vSAbfQ-NiDe-TxPPlVsWVzJkI8GNrQccrApSV4GylefFl3GYnxjAdgbLovA3I3l')"></div>
+<div class="absolute bottom-0 left-0 w-full h-24 map-gradient"></div>
+<!-- Map Markers Overlay -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+<div class="bg-primary p-2 rounded-full shadow-lg transform -translate-y-4">
+<span class="material-symbols-outlined text-white text-xl">location_on</span>
+</div>
+</div>
+<div class="absolute bottom-4 left-4 flex gap-2">
+<div class="bg-surface/90 backdrop-blur-sm px-3 py-1.5 rounded-full border border-outline-variant/30 flex items-center gap-2 shadow-sm">
+<span class="material-symbols-outlined text-primary text-sm">near_me</span>
+<span class="font-label-sm">A procurar...</span>
+</div>
+</div>
+</div>
+<div class="px-container-padding-mobile -mt-8 relative z-10 space-y-stack-lg pb-32">
+<!-- Search Status Card -->
+<div class="bg-surface-container-lowest rounded-2xl p-gutter shadow-[0_8px_32px_rgba(0,0,0,0.08)] border border-outline-variant/30">
+<div class="flex items-center gap-4 mb-stack-lg">
+<div class="relative w-8 h-8 flex items-center justify-center">
+<div class="pulse-icon relative z-10 w-4 h-4"></div>
+</div>
+<div>
+<h2 class="font-headline-md text-on-surface">À procura de executor...</h2>
+<p class="font-label-md text-on-surface-variant">Enviando pedidos para profissionais próximos</p>
+</div>
+</div>
+<!-- Vertical Timeline from SCREEN_14 style -->
+<div class="space-y-0 relative">
+<!-- Line -->
+<div class="absolute left-[15px] top-4 bottom-4 w-0.5 bg-outline-variant/30"></div>
+<!-- Step 1: Active -->
+<div class="relative flex items-start gap-4 pb-stack-lg">
+<div class="relative z-10 w-8 h-8 rounded-full bg-primary flex items-center justify-center border-4 border-surface-container-lowest shadow-sm">
+<span class="material-symbols-outlined text-white text-[16px] font-bold">check</span>
+</div>
+<div class="flex-1 pt-1">
+<h3 class="font-label-md text-on-surface">Missão Publicada</h3>
+<p class="font-label-sm text-on-surface-variant">Hoje, 14:30</p>
+</div>
+</div>
+<!-- Step 2: In Progress/Waiting -->
+<div class="relative flex items-start gap-4 pb-stack-lg">
+<div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center border-4 border-surface-container-lowest shadow-sm">
+<div class="w-2.5 h-2.5 bg-primary rounded-full"></div>
+</div>
+<div class="flex-1 pt-1">
+<h3 class="font-label-md text-primary font-bold">Encontrando Executor</h3>
+<p class="font-label-sm text-on-surface-variant">A aguardar aceitação...</p>
+</div>
+</div>
+<!-- Step 3: Future -->
+<div class="relative flex items-start gap-4 pb-stack-lg">
+<div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center border-4 border-surface-container-lowest">
+<div class="w-2 h-2 bg-outline-variant rounded-full"></div>
+</div>
+<div class="flex-1 pt-1">
+<h3 class="font-label-md text-outline">Recolha em curso</h3>
+<p class="font-label-sm text-outline/60">Pendente</p>
+</div>
+</div>
+<!-- Step 4: Future -->
+<div class="relative flex items-start gap-4">
+<div class="relative z-10 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center border-4 border-surface-container-lowest">
+<div class="w-2 h-2 bg-outline-variant rounded-full"></div>
+</div>
+<div class="flex-1 pt-1">
+<h3 class="font-label-md text-outline">Entrega Finalizada</h3>
+<p class="font-label-sm text-outline/60">Pendente</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Mission Details Information -->
+<div class="bg-surface-container-low rounded-2xl p-gutter space-y-stack-md">
+<div class="flex justify-between items-start">
+<div class="space-y-1">
+<span class="inline-flex px-2 py-0.5 rounded-lg bg-primary/10 text-primary font-label-sm uppercase tracking-wider">Entregas</span>
+<h3 class="font-headline-md text-on-surface">Entrega de Documentos Urgentes</h3>
+</div>
+<div class="text-right">
+<p class="font-label-sm text-on-surface-variant">Valor Estimado</p>
+<p class="font-headline-md text-secondary">4.500 Kz</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-stack-md pt-4 border-t border-outline-variant/30">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">pin_drop</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Local</p>
+<p class="font-label-md font-bold text-on-surface">Talatona</p>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">distance</span>
+</div>
+<div>
+<p class="font-label-sm text-on-surface-variant">Distância</p>
+<p class="font-label-md font-bold text-on-surface">2.4 km</p>
+</div>
+</div>
+</div>
+<div class="p-stack-md bg-white/50 rounded-xl">
+<p class="font-label-sm text-on-surface-variant uppercase tracking-widest mb-1">Nota da Missão</p>
+<p class="font-body-md text-on-surface">Recolha de envelope selado no Edifício Kilamba e entrega na recepção do Shopping Avenida. Necessário assinatura na entrega.</p>
+</div>
+</div>
+<!-- Action Button -->
+<div class="space-y-stack-md">
+<button class="w-full py-4 rounded-xl border-2 border-error text-error font-bold font-label-md hover:bg-error/5 transition-all active:scale-[0.98] duration-200">
+                    Cancelar Missão
+                </button>
+<p class="text-center font-label-sm text-on-surface-variant px-stack-lg leading-relaxed">
+                    Pode cancelar sem custos nos próximos <span class="font-bold text-on-surface">5 minutos</span> enquanto procuramos um executor.
+                </p>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation -->
+<nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-md border-t border-outline-variant/30 px-base pb-safe h-16 flex justify-around items-center">
+<a class="flex flex-col items-center justify-center w-1/4 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm">Início</span>
+</a>
+<a class="flex flex-col items-center justify-center w-1/4 text-primary" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">task</span>
+<span class="font-label-sm font-bold">Missões</span>
+</a>
+<a class="flex flex-col items-center justify-center w-1/4 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-label-sm">Alertas</span>
+</a>
+<a class="flex flex-col items-center justify-center w-1/4 text-on-surface-variant" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-sm">Perfil</span>
+</a>
+</nav>
+<script>
+        // Micro-interactions
+        const buttons = document.querySelectorAll('button, a');
+        buttons.forEach(btn => {
+            btn.addEventListener('touchstart', () => btn.classList.add('opacity-70'));
+            btn.addEventListener('touchend', () => btn.classList.remove('opacity-70'));
+        });
+    </script>
+</body></html>

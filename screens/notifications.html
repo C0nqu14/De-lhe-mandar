@@ -1,0 +1,231 @@
+<!DOCTYPE html><html class="light" lang="pt-PT"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001946",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "secondary-fixed": "#ffdcc6",
+                    "on-surface": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "primary-fixed": "#d9e2ff",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "secondary-fixed-dim": "#ffb786",
+                    "tertiary-container": "#a44400",
+                    "surface": "#fcf9f8",
+                    "on-surface-variant": "#434653",
+                    "primary-container": "#1e5cc8",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "on-secondary-container": "#642f00",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#d3ddff",
+                    "secondary-container": "#ff8928",
+                    "secondary": "#964900",
+                    "surface-container": "#f0eded",
+                    "surface-dim": "#dcd9d9",
+                    "on-error-container": "#93000a",
+                    "outline": "#737784",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary": "#7e3300",
+                    "on-secondary-fixed-variant": "#723600",
+                    "on-tertiary-container": "#ffd4c1",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#00419d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-low": "#f6f3f2",
+                    "primary": "#0044a3",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-container-high": "#eae7e7",
+                    "outline-variant": "#c3c6d5",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#311300",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#1858c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "container-padding-desktop": "32px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .notification-card:active {
+            background-color: rgba(0, 68, 163, 0.05);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-20">
+<!-- TopAppBar -->
+<header class="bg-surface dark:bg-background docked full-width top-0 z-50 border-b border-outline-variant/50 shadow-sm dark:shadow-none flex items-center justify-between px-container-padding-mobile py-2 w-full max-w-full sticky">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform p-2 -ml-2">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile dark:text-on-background font-bold text-primary dark:text-primary-fixed">Alertas</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-highest border border-outline-variant/30">
+<img class="w-full h-full object-cover" data-alt="A high-quality professional portrait of a young Angolan man in business casual attire, smiling warmly. The photograph is taken in a brightly lit modern office with soft daylight and a clean, minimalist background. The style is professional and trustworthy, aligning with a premium corporate service aesthetic using a soft, neutral color palette." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC71vmpT4Od454mpxr9SI7Uatj_JMm114C69ccB2V6OADSHOjvqCWlGMRb86504Qiko1MWa9qbuKiC94AgRKdyZUvgWZ7NcpmFAyZ8YMpNcLz--SLB38cya61B157sefC4OyytPq28ML61WFhJ6sj9DVNz9M4U8XH21aWC13zZhTXtsmDlhXqZjVKNwJakHuoKBLnjEMm95oWGAWy7r-T7aSq-XMUx3iIyKBj5T0TyQW5gqGNWv-r4K">
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="max-w-[1140px] mx-auto px-container-padding-mobile py-stack-lg">
+<!-- Summary Chip -->
+<div class="mb-stack-lg flex items-center justify-between">
+<span class="bg-primary/10 text-primary px-4 py-1.5 rounded-full font-label-md text-label-md">
+                3 Novas Mensagens
+            </span>
+<button class="text-primary font-label-md text-label-md hover:underline">Marcar todas como lidas</button>
+</div>
+<!-- Notifications List -->
+<div class="space-y-1 bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30">
+<!-- Notification Item 1 -->
+<div class="notification-card flex items-start gap-4 p-4 transition-colors cursor-pointer border-b border-surface-container">
+<div class="bg-secondary-container/20 p-2 rounded-xl flex-shrink-0">
+<span class="material-symbols-outlined text-secondary">local_shipping</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface font-bold">O executor Marcos está a caminho</h3>
+<span class="font-label-sm text-label-sm text-outline ml-2 whitespace-nowrap">Agora</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Prepare o local para o início da missão de limpeza.</p>
+</div>
+<div class="w-2 h-2 bg-primary rounded-full self-center ml-2"></div>
+</div>
+<!-- Notification Item 2 -->
+<div class="notification-card flex items-start gap-4 p-4 transition-colors cursor-pointer border-b border-surface-container">
+<div class="bg-primary-container/10 p-2 rounded-xl flex-shrink-0">
+<span class="material-symbols-outlined text-primary">task_alt</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Sua missão foi concluída</h3>
+<span class="font-label-sm text-label-sm text-outline ml-2 whitespace-nowrap">2h atrás</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">A entrega de documentos foi finalizada com sucesso. Avalie o serviço.</p>
+</div>
+<div class="w-2 h-2 bg-primary rounded-full self-center ml-2"></div>
+</div>
+<!-- Notification Item 3 -->
+<div class="notification-card flex items-start gap-4 p-4 transition-colors cursor-pointer">
+<div class="bg-tertiary-container/10 p-2 rounded-xl flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary">campaign</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface font-bold">Promoção de fim-de-semana</h3>
+<span class="font-label-sm text-label-sm text-outline ml-2 whitespace-nowrap">8h atrás</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Descontos especiais de 15% em todas as missões de transporte.</p>
+</div>
+<div class="w-2 h-2 bg-primary rounded-full self-center ml-2"></div>
+</div>
+</div>
+<!-- Section: Older Notifications -->
+<h2 class="font-label-sm text-label-sm text-outline uppercase tracking-wider mt-stack-lg mb-stack-md px-2">Anteriores</h2>
+<div class="space-y-1 bg-surface-container-lowest rounded-2xl overflow-hidden border border-outline-variant/30">
+<div class="notification-card flex items-start gap-4 p-4 transition-colors cursor-pointer opacity-70">
+<div class="bg-surface-container-highest p-2 rounded-xl flex-shrink-0">
+<span class="material-symbols-outlined text-on-surface-variant">person</span>
+</div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<h3 class="font-label-md text-label-md text-on-surface">Perfil verificado</h3>
+<span class="font-label-sm text-label-sm text-outline ml-2 whitespace-nowrap">Ontem</span>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Sua conta "De Lhe Mandar" foi verificada com sucesso.</p>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface dark:bg-surface-container-lowest border-t border-outline-variant/30 shadow-[0_-4px_24px_0_rgba(0,0,0,0.04)] flex justify-around items-center h-16 w-full px-base pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">task</span>
+<span class="font-label-md text-label-md">Missions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">notifications</span>
+<span class="font-label-md text-label-md">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<script>
+        // Micro-interaction: Mark as read on click
+        document.querySelectorAll('.notification-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const badge = this.querySelector('.bg-primary.rounded-full');
+                if (badge) {
+                    badge.classList.add('hidden');
+                }
+                this.classList.add('opacity-70');
+            });
+        });
+    </script>
+</body></html>

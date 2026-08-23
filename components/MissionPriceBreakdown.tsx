@@ -1,0 +1,4 @@
+import { StyleSheet, Text, View } from 'react-native';
+import { Colors } from '@/constants/Colors';
+export function MissionPriceBreakdown({ serviceAmount, purchaseAmount }: { serviceAmount: number; purchaseAmount: number }) { return <View style={styles.box}><Text style={styles.line}>Serviço <Text>{serviceAmount.toLocaleString('pt-AO')} Kz</Text></Text><Text style={styles.line}>Compras estimadas <Text>{purchaseAmount.toLocaleString('pt-AO')} Kz</Text></Text><Text style={styles.total}>Total estimado <Text>{(serviceAmount + purchaseAmount).toLocaleString('pt-AO')} Kz</Text></Text></View>; }
+const styles = StyleSheet.create({ box: { backgroundColor: '#EAF0FF', borderRadius: 14, padding: 16 }, line: { color: Colors.light.icon, marginVertical: 4 }, total: { borderTopWidth: 1, borderTopColor: '#C3D2F5', paddingTop: 10, marginTop: 8, color: Colors.light.text, fontWeight: '800' } });

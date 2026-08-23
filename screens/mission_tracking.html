@@ -1,0 +1,273 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Detalhes da Missão - De Lhe Mandar</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed-variant": "#723600",
+                    "on-tertiary-container": "#ffd4c1",
+                    "primary": "#0044a3",
+                    "on-secondary-container": "#642f00",
+                    "on-surface-variant": "#434653",
+                    "on-tertiary": "#ffffff",
+                    "outline-variant": "#c3c6d5",
+                    "surface-variant": "#e5e2e1",
+                    "on-surface": "#1c1b1b",
+                    "surface-dim": "#dcd9d9",
+                    "tertiary": "#7e3300",
+                    "on-tertiary-fixed": "#341100",
+                    "secondary-fixed-dim": "#ffb786",
+                    "secondary-fixed": "#ffdcc6",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-container": "#f0eded",
+                    "surface-bright": "#fcf9f8",
+                    "secondary-container": "#ff8928",
+                    "background": "#fcf9f8",
+                    "on-secondary": "#ffffff",
+                    "primary-container": "#1e5cc8",
+                    "secondary": "#964900",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#001946",
+                    "primary-fixed": "#d9e2ff",
+                    "surface-container-lowest": "#ffffff",
+                    "inverse-on-surface": "#f3f0ef",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "surface": "#fcf9f8",
+                    "on-primary": "#ffffff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "on-background": "#1c1b1b",
+                    "inverse-primary": "#b0c6ff",
+                    "tertiary-container": "#a44400",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "surface-tint": "#1858c4",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "on-primary-container": "#d3ddff",
+                    "on-primary-fixed-variant": "#00419d",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container-high": "#eae7e7",
+                    "outline": "#737784",
+                    "error": "#ba1a1a",
+                    "error-container": "#ffdad6",
+                    "on-error": "#ffffff",
+                    "on-secondary-fixed": "#311300",
+                    "inverse-surface": "#313030"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-desktop": "32px",
+                    "stack-sm": "8px",
+                    "stack-md": "16px",
+                    "stack-lg": "24px",
+                    "gutter": "16px",
+                    "container-padding-mobile": "16px",
+                    "base": "8px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "label-md": ["Inter"],
+                    "headline-lg": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
+        .timeline-line { position: absolute; left: 15px; top: 0; bottom: 0; width: 2px; background: #e5e2e1; z-index: 0; }
+        .timeline-step.active .step-dot { background-color: #0044a3; border-color: #d9e2ff; }
+        .timeline-step.completed .step-dot { background-color: #0044a3; border-color: transparent; }
+        .timeline-step.pending .step-dot { background-color: #e5e2e1; border-color: transparent; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .chat-sheet { transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- Top Navigation Bar -->
+<header class="bg-surface-container-lowest/80 backdrop-blur-md text-primary fixed top-0 w-full z-50 border-b border-outline-variant/30 px-container-padding-mobile py-3 flex items-center justify-between cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_29}}'">
+<div class="flex items-center gap-3">
+<button class="material-symbols-outlined p-1 hover:bg-surface-container-low rounded-full transition-colors">arrow_back</button>
+<h1 class="font-headline-md text-[20px] font-bold text-on-surface">Missão #8824</h1>
+</div>
+<div class="flex items-center">
+<div class="w-9 h-9 rounded-full overflow-hidden border border-outline-variant/50 ring-2 ring-primary/10">
+<img alt="Executor Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXWEBPRGUZyXqUdjJtfIhSlCsVgxz4zibioseso3jzOHj6pnJA5DoLBZZ0frPMUyEuKTMNq1HOZjoOLAosKEZQk72H7ARQ5pyB2M23LxRM6wnxJ1i7XomMll58WM1jFU3-1nhHPj3B8Wl67TMcdEssIxTcDhO0PI_Gr9pXAfc49lGXmSZHSRLPOZ9Jb4ATDO8MMVa4yA_GqVI0R730pIB5Rtb0YjFzbju1hn5TQ3CL6CVo-iDr7qo6">
+</div>
+</div>
+</header>
+<main class="pt-20 pb-44 px-container-padding-mobile max-w-2xl mx-auto">
+<!-- Executor Card -->
+<section class="mb-stack-lg bg-surface-container-lowest p-4 rounded-2xl border border-outline-variant/30 shadow-sm flex items-center justify-between">
+<div class="flex items-center gap-4">
+<div class="w-14 h-14 rounded-full overflow-hidden bg-primary-fixed">
+<img alt="Mateus Kiluanje" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdHYgj3lZjEsuJq2IGp7aDW_7OArTAE4cGI7fjm5ZKZUapHN9rNx-w350FVrPB2KFd3sNfLMDSWQPgIqUjZYTg_uo2xCfwPmOtOOfSFM3_vncbZZKN-miYxOijzRGaYup-27bxXVJR3SX15AnDcDmnl4uW14zfTWA5WP95l63HK4Ynhpq2UpAVYOS0jsVm_AJOCxn3B2G8rN1OrCPEaDfPW957HUZ-XMqoQdtOhdwnj2Pm_taiJ4_d">
+</div>
+<div>
+<p class="text-on-surface-variant font-label-sm uppercase tracking-wider">Executor Designado</p>
+<h3 class="font-headline-md text-lg font-bold">Mateus Kiluanje</h3>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-11 h-11 flex items-center justify-center bg-primary text-on-primary rounded-full shadow-md active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">call</span>
+</button>
+<button class="w-11 h-11 flex items-center justify-center bg-surface-container-high text-primary rounded-full active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-[22px]">map</span>
+</button>
+</div>
+</section>
+<!-- Vertical Timeline: Definitive Client View -->
+<section class="relative pl-8 space-y-7">
+<div class="timeline-line"></div>
+<!-- Step 1: Missão Criada (Completed) -->
+<div class="timeline-step completed relative flex items-start">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 cursor-pointer"></div>
+<div class="flex-1 pb-1 border-b border-outline-variant/10">
+<div class="flex justify-between items-center">
+<h4 class="font-label-md text-on-surface font-bold">Missão Criada</h4>
+<span class="font-label-sm text-outline">09:00</span>
+</div>
+<p class="font-label-sm text-on-surface-variant">Sua solicitação foi publicada e enviada para a rede.</p>
+</div>
+</div>
+<!-- Step 2: Executor Aceitou (Completed) -->
+<div class="timeline-step completed relative flex items-start">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 cursor-pointer"></div>
+<div class="flex-1 pb-1 border-b border-outline-variant/10">
+<div class="flex justify-between items-center">
+<h4 class="font-label-md text-on-surface font-bold">Executor Aceitou</h4>
+<span class="font-label-sm text-outline">09:12</span>
+</div>
+<p class="font-label-sm text-on-surface-variant">Mateus Kiluanje aceitou e está preparando o serviço.</p>
+</div>
+</div>
+<!-- Step 3: Em Trânsito (Active) -->
+<div class="timeline-step active relative flex items-start">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 ring-4 ring-primary/10 cursor-pointer"></div>
+<div class="flex-1 pb-1 border-b border-outline-variant/10">
+<div class="flex justify-between items-center">
+<h4 class="font-label-md text-primary font-bold">Em Trânsito</h4>
+<span class="font-label-sm text-primary font-bold">09:45</span>
+</div>
+<p class="font-label-sm text-on-surface-variant">O executor está a caminho do ponto de partida da missão.</p>
+</div>
+</div>
+<!-- Step 4: Chegada ao Local (Pending) -->
+<div class="timeline-step pending relative flex items-start opacity-60">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 cursor-pointer"></div>
+<div class="flex-1 pb-1 border-b border-outline-variant/10">
+<h4 class="font-label-md text-on-surface font-semibold">Chegada ao Local</h4>
+<p class="font-label-sm text-outline">Aguardando chegada...</p>
+</div>
+</div>
+<!-- Step 5: Em Execução (Pending) -->
+<div class="timeline-step pending relative flex items-start opacity-60">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 cursor-pointer"></div>
+<div class="flex-1 pb-1 border-b border-outline-variant/10">
+<h4 class="font-label-md text-on-surface font-semibold">Em Execução</h4>
+</div>
+</div>
+<!-- Step 6: Validação (Pending) -->
+<div class="timeline-step pending relative flex items-start opacity-60">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 cursor-pointer"></div>
+<div class="flex-1 pb-1 border-b border-outline-variant/10">
+<h4 class="font-label-md text-on-surface font-semibold">Validação</h4>
+<p class="font-label-sm text-outline">Pendente Prova de Execução (PoE)</p>
+</div>
+</div>
+<!-- Step 7: Concluída (Pending) -->
+<div class="timeline-step pending relative flex items-start opacity-60">
+<div class="step-dot absolute -left-[23px] w-4 h-4 rounded-full border-4 border-surface z-10 cursor-pointer"></div>
+<div class="flex-1 pb-1">
+<h4 class="font-label-md text-on-surface font-semibold">Concluída</h4>
+</div>
+</div>
+</section>
+</main>
+<!-- Contextual Chat Bottom Sheet -->
+<div class="fixed bottom-0 left-0 right-0 z-[60] bg-surface-container-lowest shadow-[0_-8px_32px_rgba(0,0,0,0.08)] rounded-t-[32px] border-t border-outline-variant/30 flex flex-col chat-sheet">
+<!-- Drag Handle -->
+<div class="w-10 h-1 bg-outline-variant rounded-full mx-auto my-3"></div>
+<div class="px-container-padding-mobile pb-8">
+<!-- Quick Action Tags -->
+<div class="flex gap-2 mb-4 overflow-x-auto no-scrollbar py-1">
+<button class="whitespace-nowrap px-4 py-2 bg-primary-fixed text-on-primary-fixed-variant rounded-full font-label-md active:scale-95 transition-transform border border-primary/10 shadow-sm">Confirmado ✅</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface-container-high text-on-surface rounded-full font-label-md active:scale-95 transition-transform">Obrigado!</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface-container-high text-on-surface rounded-full font-label-md active:scale-95 transition-transform">Qual o tempo? ⏳</button>
+<button class="whitespace-nowrap px-4 py-2 bg-surface-container-high text-on-surface rounded-full font-label-md active:scale-95 transition-transform">Cheguei</button>
+</div>
+<!-- Chat History Peek -->
+<div class="space-y-4 mb-6 max-h-40 overflow-y-auto no-scrollbar scroll-smooth" id="chat-history">
+<div class="flex justify-start">
+<div class="bg-surface-container-low px-4 py-3 rounded-2xl rounded-tl-none max-w-[85%] shadow-sm">
+<p class="font-body-md text-on-surface">Olá! Já estou a caminho da loja para levantar o seu pedido.</p>
+<span class="text-[10px] text-outline mt-1 block">09:46</span>
+</div>
+</div>
+<div class="flex justify-end">
+<div class="bg-primary px-4 py-3 rounded-2xl rounded-tr-none max-w-[85%] text-on-primary shadow-md">
+<p class="font-body-md">Perfeito, Mateus. Fico a aguardar aqui.</p>
+<span class="text-[10px] text-on-primary/70 mt-1 block">09:47</span>
+</div>
+</div>
+</div>
+<!-- Message Input Area -->
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-3 rounded-2xl border border-outline-variant/40 shadow-inner">
+<button class="material-symbols-outlined text-outline hover:text-primary transition-colors p-1">image</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-on-surface placeholder-outline/70 font-body-md cursor-pointer" placeholder="Mensagem para Mateus..." type="text">
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-on-primary rounded-full active:scale-90 transition-transform shadow-lg">
+<span class="material-symbols-outlined text-[20px]">send</span>
+</button>
+</div>
+</div>
+</div>
+<script>
+        const chatHistory = document.getElementById('chat-history');
+        const chatInput = document.querySelector('input');
+
+        // Initial scroll to bottom
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+
+        // Visual feedback for input focus
+        chatInput.addEventListener('focus', () => {
+            // Expand logic could go here
+        });
+
+        // Add a smooth scroll effect to timeline points
+        document.querySelectorAll('.timeline-step').forEach(step => {
+            step.addEventListener('click', () => {
+                step.classList.toggle('bg-surface-container-low');
+                setTimeout(() => step.classList.remove('bg-surface-container-low'), 300);
+            });
+        });
+    </script>
+
+
+</body></html>

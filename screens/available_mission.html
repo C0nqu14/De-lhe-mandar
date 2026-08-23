@@ -1,0 +1,316 @@
+<!DOCTYPE html><html lang="pt-AO"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>De Lhe Mandar - Missões Disponíveis</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-highest": "#e5e2e1",
+                    "on-secondary": "#ffffff",
+                    "on-primary-fixed": "#001946",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "tertiary-fixed": "#ffdbcb",
+                    "secondary-fixed": "#ffdcc6",
+                    "on-surface": "#1c1b1b",
+                    "on-error": "#ffffff",
+                    "surface-bright": "#fcf9f8",
+                    "primary-fixed": "#d9e2ff",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "secondary-fixed-dim": "#ffb786",
+                    "tertiary-container": "#a44400",
+                    "surface": "#fcf9f8",
+                    "on-surface-variant": "#434653",
+                    "primary-container": "#1e5cc8",
+                    "on-background": "#1c1b1b",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "on-secondary-container": "#642f00",
+                    "background": "#fcf9f8",
+                    "on-primary-container": "#d3ddff",
+                    "secondary-container": "#ff8928",
+                    "secondary": "#964900",
+                    "surface-container": "#f0eded",
+                    "surface-dim": "#dcd9d9",
+                    "on-error-container": "#93000a",
+                    "outline": "#737784",
+                    "surface-variant": "#e5e2e1",
+                    "tertiary": "#7e3300",
+                    "on-secondary-fixed-variant": "#723600",
+                    "on-tertiary-container": "#ffd4c1",
+                    "inverse-surface": "#313030",
+                    "inverse-on-surface": "#f3f0ef",
+                    "error": "#ba1a1a",
+                    "on-tertiary": "#ffffff",
+                    "on-primary-fixed-variant": "#00419d",
+                    "surface-container-lowest": "#ffffff",
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-low": "#f6f3f2",
+                    "primary": "#0044a3",
+                    "inverse-primary": "#b0c6ff",
+                    "surface-container-high": "#eae7e7",
+                    "outline-variant": "#c3c6d5",
+                    "error-container": "#ffdad6",
+                    "on-secondary-fixed": "#311300",
+                    "on-primary": "#ffffff",
+                    "surface-tint": "#1858c4"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "16px",
+                    "base": "8px",
+                    "gutter": "16px",
+                    "stack-md": "16px",
+                    "stack-sm": "8px",
+                    "stack-lg": "24px",
+                    "container-padding-desktop": "32px"
+            },
+            "fontFamily": {
+                    "label-md": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "headline-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "headline-lg-mobile": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"]
+            },
+            "fontSize": {
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        /* Custom hide scrollbar */
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-24">
+<!-- Top App Bar -->
+<header class="bg-surface docked full-width top-0 z-50 border-b border-outline-variant/50 shadow-sm flex items-center justify-between px-container-padding-mobile py-2 w-full max-w-full sticky">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary cursor-pointer active:scale-95 transition-transform" data-icon="arrow_back">arrow_back</span>
+<h1 class="font-headline-md text-headline-md-mobile font-bold text-primary">Missões Disponíveis</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="A professional headshot of a friendly Angolan service provider smiling at the camera. The background is a clean, minimalist office setting with soft natural lighting. The image follows a high-trust, corporate modern aesthetic with warm skin tones and crisp focus on the subject's face to build immediate user confidence." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJtURoJ-6Oq0NeesTKfSLgDT3afiR1WCWFy11NUzlp_Q3_NIDrz_MDpnzb3D7R5dX-qmEksga82FbhFKm2M8Rw4nG55aU_su0xtayCE-OAOabzWLDnJPvkZfmBPnu_A1qlQ3egtwDEV4UHTJ53E2PBCq9IHSA-SiLL6S6vuuPXDfy-PuY0Tny0H87ND_e2ZTRitqHOTt7gsHPHrMigSfBUcp5QIRgF2s9TzT5diwwO6MX-zuj1dsgx">
+</div>
+</header>
+<main class="px-container-padding-mobile mt-stack-lg">
+<!-- Search and Filter Section -->
+<section class="mb-stack-lg space-y-4">
+<div class="flex items-center gap-base">
+<div class="relative flex-1">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full h-14 pl-12 pr-4 bg-surface-container-lowest border border-outline-variant rounded-xl focus:border-primary focus:ring-0 transition-all text-body-md" placeholder="Procurar missões..." type="text">
+</div>
+<button class="h-14 w-14 flex items-center justify-center bg-surface-container-lowest border border-outline-variant rounded-xl active:bg-surface-variant transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="tune">tune</span>
+</button>
+</div>
+<!-- Chips / Horizontal Filter -->
+<div class="flex items-center gap-stack-sm overflow-x-auto hide-scrollbar py-1">
+<button class="px-4 py-2 bg-primary text-on-primary rounded-full font-label-md text-label-md whitespace-nowrap flex items-center gap-1">
+                    Até 5km <span class="material-symbols-outlined text-[18px]" data-icon="close">close</span>
+</button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md whitespace-nowrap border border-transparent hover:border-outline-variant transition-all">
+                    Pagamento Alto
+                </button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md whitespace-nowrap border border-transparent hover:border-outline-variant transition-all">
+                    Recentes
+                </button>
+<button class="px-4 py-2 bg-surface-container-high text-on-surface-variant rounded-full font-label-md text-label-md whitespace-nowrap border border-transparent hover:border-outline-variant transition-all">
+                    Entregas
+                </button>
+</div>
+</section>
+<!-- Mission Cards List -->
+<section class="grid grid-cols-1 gap-gutter">
+<!-- Mission Card 1 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-stack-md shadow-sm active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="account_balance">account_balance</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Fila no Banco BIC</h3>
+<p class="text-on-surface-variant font-label-md text-label-sm">Talatona, Edifício Benguela</p>
+</div>
+</div>
+<span class="font-headline-md text-primary text-body-lg font-bold">3.000 Kz</span>
+</div>
+<div class="flex items-center gap-4 py-3 border-y border-outline-variant/30">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="near_me">near_me</span>
+<span class="text-on-surface-variant font-label-md text-label-md">1.2 km</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Expira em 40m</span>
+</div>
+</div>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-full hover:opacity-90 active:scale-95 transition-all">Aceitar Missão</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Mission Card 2 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-stack-md shadow-sm active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-xl bg-secondary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary text-[28px]" data-icon="shopping_bag">shopping_bag</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Compras de Supermercado</h3>
+<p class="text-on-surface-variant font-label-md text-label-sm">Kero Nova Vida</p>
+</div>
+</div>
+<span class="font-headline-md text-primary text-body-lg font-bold">5.500 Kz</span>
+</div>
+<div class="flex items-center gap-4 py-3 border-y border-outline-variant/30">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="near_me">near_me</span>
+<span class="text-on-surface-variant font-label-md text-label-md">3.8 km</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Urgente</span>
+</div>
+</div>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-full hover:opacity-90 active:scale-95 transition-all">Aceitar Missão</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Mission Card 3 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-stack-md shadow-sm active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-xl bg-tertiary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary text-[28px]" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Entrega de Documentos</h3>
+<p class="text-on-surface-variant font-label-md text-label-sm">Mutamba para Viana</p>
+</div>
+</div>
+<span class="font-headline-md text-primary text-body-lg font-bold">4.200 Kz</span>
+</div>
+<div class="flex items-center gap-4 py-3 border-y border-outline-variant/30">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="near_me">near_me</span>
+<span class="text-on-surface-variant font-label-md text-label-md">0.5 km</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Amanhã 09:00</span>
+</div>
+</div>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-full hover:opacity-90 active:scale-95 transition-all">Aceitar Missão</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+<!-- Mission Card 4 -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-stack-md shadow-sm active:scale-[0.98] transition-transform cursor-pointer">
+<div class="flex justify-between items-start mb-4">
+<div class="flex gap-4">
+<div class="w-12 h-12 rounded-xl bg-primary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[28px]" data-icon="pets">pets</span>
+</div>
+<div>
+<h3 class="font-headline-md text-body-lg font-bold text-on-surface">Passeio com Cão</h3>
+<p class="text-on-surface-variant font-label-md text-label-sm">Centralidade do Kilamba</p>
+</div>
+</div>
+<span class="font-headline-md text-primary text-body-lg font-bold">2.500 Kz</span>
+</div>
+<div class="flex items-center gap-4 py-3 border-y border-outline-variant/30">
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="near_me">near_me</span>
+<span class="text-on-surface-variant font-label-md text-label-md">4.5 km</span>
+</div>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="schedule">schedule</span>
+<span class="text-on-surface-variant font-label-md text-label-md">Hoje, 17:30</span>
+</div>
+</div>
+<div class="mt-4 flex gap-3">
+<button class="flex-1 bg-primary text-on-primary font-label-md text-label-md py-3 rounded-full hover:opacity-90 active:scale-95 transition-all">Aceitar Missão</button>
+<button class="w-12 h-12 flex items-center justify-center border border-outline-variant rounded-full text-on-surface-variant hover:bg-surface-container-low transition-colors">
+<span class="material-symbols-outlined" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Empty state or Load More -->
+<div class="mt-stack-lg text-center pb-8">
+<p class="text-on-surface-variant font-label-md text-label-md mb-4">A carregar mais missões próximas...</p>
+<div class="flex justify-center">
+<div class="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+</div>
+</div>
+</main>
+<!-- Bottom Nav Bar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface border-t border-outline-variant/30 shadow-[0_-4px_24px_0_rgba(0,0,0,0.04)] flex justify-around items-center h-16 px-base pb-safe">
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim font-bold hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="task" data-weight="fill" style="font-variation-settings: 'FILL' 1;">task</span>
+<span class="font-label-md text-label-md">Missions</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-label-md text-label-md">Alerts</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant dark:text-outline hover:bg-surface-container-low transition-colors active:scale-90 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+</nav>
+<!-- Floating Action Button for Map Toggle (Optional but helpful context) -->
+<div class="fixed bottom-20 right-6 z-40">
+<button class="w-14 h-14 bg-secondary shadow-lg rounded-full flex items-center justify-center text-on-secondary active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+</button>
+</div>
+</body></html>

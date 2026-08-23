@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>De Lhe Mandar - Criar Missão</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-secondary-fixed-variant": "#723600",
+                      "on-tertiary-container": "#ffd4c1",
+                      "primary": "#0044a3",
+                      "on-secondary-container": "#642f00",
+                      "on-surface-variant": "#434653",
+                      "on-tertiary": "#ffffff",
+                      "outline-variant": "#c3c6d5",
+                      "surface-variant": "#e5e2e1",
+                      "on-surface": "#1c1b1b",
+                      "surface-dim": "#dcd9d9",
+                      "tertiary": "#7e3300",
+                      "on-tertiary-fixed": "#341100",
+                      "secondary-fixed-dim": "#ffb786",
+                      "secondary-fixed": "#ffdcc6",
+                      "surface-container-highest": "#e5e2e1",
+                      "surface-container": "#f0eded",
+                      "surface-bright": "#fcf9f8",
+                      "secondary-container": "#ff8928",
+                      "background": "#fcf9f8",
+                      "on-secondary": "#ffffff",
+                      "primary-container": "#1e5cc8",
+                      "secondary": "#964900",
+                      "on-error-container": "#93000a",
+                      "on-primary-fixed": "#001946",
+                      "primary-fixed": "#d9e2ff",
+                      "surface-container-lowest": "#ffffff",
+                      "inverse-on-surface": "#f3f0ef",
+                      "tertiary-fixed-dim": "#ffb692",
+                      "surface": "#fcf9f8",
+                      "on-primary": "#ffffff",
+                      "tertiary-fixed": "#ffdbcb",
+                      "on-background": "#1c1b1b",
+                      "inverse-primary": "#b0c6ff",
+                      "tertiary-container": "#a44400",
+                      "on-tertiary-fixed-variant": "#793000",
+                      "surface-tint": "#1858c4",
+                      "primary-fixed-dim": "#b0c6ff",
+                      "on-primary-container": "#d3ddff",
+                      "on-primary-fixed-variant": "#00419d",
+                      "surface-container-low": "#f6f3f2",
+                      "surface-container-high": "#eae7e7",
+                      "outline": "#737784",
+                      "error": "#ba1a1a",
+                      "error-container": "#ffdad6",
+                      "on-error": "#ffffff",
+                      "on-secondary-fixed": "#311300",
+                      "inverse-surface": "#313030"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "container-padding-desktop": "32px",
+                      "stack-sm": "8px",
+                      "stack-md": "16px",
+                      "stack-lg": "24px",
+                      "gutter": "16px",
+                      "container-padding-mobile": "16px",
+                      "base": "8px"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Inter"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-xl": ["Inter"],
+                      "label-sm": ["Inter"],
+                      "headline-md": ["Inter"],
+                      "label-md": ["Inter"],
+                      "headline-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+<style>
+        body { font-family: 'Inter', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .step-indicator-active { width: 40px; }
+        .chip-active {
+            background-color: #0044a3;
+            color: white;
+            border-color: #0044a3;
+        }
+    </style>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- Top Navigation Bar -->
+<header class="bg-surface border-b border-outline-variant/50 shadow-sm docked full-width top-0 z-50 flex items-center justify-between px-container-padding-mobile py-2 w-full max-w-full">
+<div class="flex items-center gap-4">
+<button aria-label="Voltar" class="active:scale-95 transition-transform p-2 hover:bg-surface-container-low transition-colors rounded-full">
+<span class="material-symbols-outlined text-primary">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary">De Lhe Mandar</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border border-outline-variant">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRqD8xVjbsP1fz8acGkplvIxtwpO8NTR6ekZGaXdgmtb1USM_s3ECfsHcrRWc3lv0zELF89_SBtuWZa2RYig_IsK4E9z3KvgtdBMjDkF7pfvISjllOqb7eeJ55N-Q6FGaW8zZoCW2DChsv51yyK2qqcT3iroH2pf2nv82TMvFQ-hhszfmxnGYduR1i0Vx6DB97f4PPS2KQqTjNS14mg9m7hGD1wmZqEJ8d-cE5z3tVphFdgD8oyh8X">
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 max-w-xl mx-auto w-full px-container-padding-mobile py-stack-lg flex flex-col">
+<!-- Step Progress Indicator: 1 of 6 -->
+<div class="flex items-center gap-1.5 mb-stack-lg">
+<div class="h-1.5 step-indicator-active bg-primary rounded-full transition-all duration-500"></div>
+<div class="h-1.5 w-6 bg-surface-container-highest rounded-full"></div>
+<div class="h-1.5 w-6 bg-surface-container-highest rounded-full"></div>
+<div class="h-1.5 w-6 bg-surface-container-highest rounded-full"></div>
+<div class="h-1.5 w-6 bg-surface-container-highest rounded-full"></div>
+<div class="h-1.5 w-6 bg-surface-container-highest rounded-full"></div>
+<span class="ml-auto font-label-sm text-label-sm text-on-surface-variant">Passo 1 de 6</span>
+</div>
+<!-- Question Header -->
+<div class="mb-stack-lg">
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface mb-2">O que precisa?</h2>
+<p class="font-body-md text-body-md text-on-surface-variant">Descreva a missão que deseja que alguém realize por si.</p>
+</div>
+<!-- Multi-step Form Content -->
+<section class="flex flex-col gap-stack-lg flex-1">
+<!-- Description Input -->
+<div class="space-y-2">
+<label class="font-label-md text-label-md text-on-surface" for="mission-description">Descrição da Missão</label>
+<textarea class="w-full p-4 bg-surface-container-lowest border border-outline-variant rounded-xl font-body-md text-body-md focus:ring-2 focus:ring-primary focus:border-primary transition-all resize-none placeholder:text-outline" id="mission-description" placeholder="Ex: Comprar botija de gás e entregar em casa." rows="6"></textarea>
+</div>
+<!-- Category Selection Chips -->
+<div class="space-y-4">
+<label class="font-label-md text-label-md text-on-surface">Selecione uma categoria</label>
+<div class="flex flex-wrap gap-2">
+<!-- Category Chips -->
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:border-outline transition-colors chip-active cursor-pointer">
+                        Compras
+                    </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:border-outline transition-colors cursor-pointer">
+                        Entregas
+                    </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:border-outline transition-colors cursor-pointer">
+                        Limpeza
+                    </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:border-outline transition-colors cursor-pointer">
+                        Reparações
+                    </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:border-outline transition-colors cursor-pointer">
+                        Recados
+                    </button>
+<button class="px-4 py-2 rounded-full border border-outline-variant bg-surface-container-low text-on-surface-variant font-label-md text-label-md hover:bg-surface-container hover:border-outline transition-colors cursor-pointer">
+                        Outros
+                    </button>
+</div>
+</div>
+<!-- Contextual Dica de Sucesso Card -->
+<div class="mt-auto pt-stack-lg">
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-start gap-4 border border-outline-variant/30">
+<div class="p-3 bg-primary/10 rounded-xl">
+<span class="material-symbols-outlined text-primary">lightbulb</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-primary font-bold">Dica de Sucesso</p>
+<p class="font-body-md text-body-md text-on-surface-variant text-sm mt-0.5 leading-relaxed">Missões bem detalhadas são aceites 2x mais rápido. Inclua horários e referências visuais se possível.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Fixed Bottom Action Bar -->
+<footer class="mt-stack-lg pt-4">
+<button class="w-full h-14 bg-secondary-container hover:bg-secondary transition-colors text-on-secondary-container font-bold rounded-full flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-lg shadow-secondary-container/20 cursor-pointer" onclick="window.location.href='{{DATA:SCREEN:SCREEN_8}}'">
+<span class="font-label-md text-label-md">Continuar</span>
+<span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</footer>
+</main>
+<script>
+        // Micro-interactions for chip selection
+        const chips = document.querySelectorAll('.flex-wrap button');
+        chips.forEach(chip => {
+            chip.addEventListener('click', () => {
+                chips.forEach(c => c.classList.remove('chip-active'));
+                chip.classList.add('chip-active');
+            });
+        });
+
+        // Simple button interaction feedback
+        const nextBtn = document.querySelector('footer button');
+        nextBtn.addEventListener('click', () => {
+            nextBtn.classList.add('opacity-90');
+            setTimeout(() => {
+                nextBtn.classList.remove('opacity-90');
+            }, 200);
+        });
+    </script>
+
+
+</body></html>

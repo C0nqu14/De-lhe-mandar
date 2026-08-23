@@ -1,0 +1,6 @@
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
+import { SafeAreaView, StyleSheet, Text, View, Pressable } from 'react-native';
+import { Colors } from '@/constants/Colors';
+export default function NotificationsScreen() { return <SafeAreaView style={styles.safe}><View style={styles.content}><Pressable onPress={() => router.back()} style={styles.back}><Ionicons name="arrow-back" size={24} color={Colors.light.text} /><Text style={styles.title}>Notificações</Text></Pressable><View style={styles.item}><Ionicons name="checkmark-circle" size={25} color="#26864B" /><View><Text style={styles.itemTitle}>Missão atualizada</Text><Text style={styles.copy}>O seu Nengue está a caminho.</Text></View></View><Text style={styles.muted}>Não existem mais notificações.</Text></View></SafeAreaView>; }
+const styles = StyleSheet.create({ safe: { flex: 1, backgroundColor: '#FCF9F8' }, content: { padding: 20 }, back: { flexDirection: 'row', gap: 14, alignItems: 'center', marginBottom: 28 }, title: { color: Colors.light.text, fontSize: 25, fontWeight: '800' }, item: { flexDirection: 'row', gap: 13, padding: 16, backgroundColor: '#FFF', borderRadius: 14 }, itemTitle: { color: Colors.light.text, fontWeight: '700' }, copy: { color: Colors.light.icon, marginTop: 4 }, muted: { color: Colors.light.icon, textAlign: 'center', marginTop: 35 } });

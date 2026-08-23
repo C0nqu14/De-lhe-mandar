@@ -1,0 +1,5 @@
+import { Ionicons } from '@expo/vector-icons';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Colors } from '@/constants/Colors';
+export function BottomNavigation({ executor = false }: { executor?: boolean }) { return <View style={styles.nav}><Pressable><Ionicons name="home-outline" size={22} color={Colors.light.tint} /><Text style={styles.text}>{executor ? 'Painel' : 'Início'}</Text></Pressable><Pressable><Ionicons name="list-outline" size={22} color={Colors.light.tint} /><Text style={styles.text}>Missões</Text></Pressable><Pressable><Ionicons name="person-outline" size={22} color={Colors.light.tint} /><Text style={styles.text}>Perfil</Text></Pressable></View>; }
+const styles = StyleSheet.create({ nav: { flexDirection: 'row', justifyContent: 'space-around', borderTopWidth: 1, borderTopColor: '#E5E2E1', paddingVertical: 10, backgroundColor: '#FFF' }, text: { color: Colors.light.icon, fontSize: 11, marginTop: 3, textAlign: 'center' } });

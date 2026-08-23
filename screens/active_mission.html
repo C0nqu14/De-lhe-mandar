@@ -1,0 +1,287 @@
+<!DOCTYPE html><html lang="pt"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>De Lhe Mandar - Missão Ativa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#341100",
+                    "surface-container-lowest": "#ffffff",
+                    "secondary": "#964900",
+                    "inverse-on-surface": "#f3f0ef",
+                    "error": "#ba1a1a",
+                    "on-primary-container": "#d3ddff",
+                    "inverse-primary": "#b0c6ff",
+                    "secondary-container": "#ff8928",
+                    "surface": "#fcf9f8",
+                    "background": "#fcf9f8",
+                    "outline": "#737784",
+                    "surface-variant": "#e5e2e1",
+                    "surface-container": "#f0eded",
+                    "surface-container-highest": "#e5e2e1",
+                    "surface-tint": "#1858c4",
+                    "on-primary": "#ffffff",
+                    "primary": "#0044a3",
+                    "on-background": "#1c1b1b",
+                    "error-container": "#ffdad6",
+                    "surface-container-low": "#f6f3f2",
+                    "inverse-surface": "#313030",
+                    "primary-container": "#1e5cc8",
+                    "surface-container-high": "#eae7e7",
+                    "surface-bright": "#fcf9f8",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed-dim": "#ffb692",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dcd9d9",
+                    "on-secondary-fixed": "#311300",
+                    "on-surface-variant": "#434653",
+                    "secondary-fixed-dim": "#ffb786",
+                    "primary-fixed": "#d9e2ff",
+                    "on-secondary-fixed-variant": "#723600",
+                    "tertiary-fixed": "#ffdbcb",
+                    "tertiary": "#7e3300",
+                    "outline-variant": "#c3c6d5",
+                    "on-surface": "#1c1b1b",
+                    "on-primary-fixed-variant": "#00419d",
+                    "primary-fixed-dim": "#b0c6ff",
+                    "on-error": "#ffffff",
+                    "on-tertiary-fixed-variant": "#793000",
+                    "tertiary-container": "#a44400",
+                    "on-secondary-container": "#642f00",
+                    "on-error-container": "#93000a",
+                    "on-primary-fixed": "#001946",
+                    "secondary-fixed": "#ffdcc6",
+                    "on-tertiary-container": "#ffd4c1"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "container-padding-mobile": "16px",
+                    "container-padding-desktop": "32px",
+                    "base": "8px",
+                    "stack-sm": "8px",
+                    "gutter": "16px",
+                    "stack-lg": "24px",
+                    "stack-md": "16px"
+            },
+            "fontFamily": {
+                    "headline-lg-mobile": ["Inter"],
+                    "body-md": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "label-sm": ["Inter"],
+                    "label-md": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "headline-md": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg-mobile": ["28px", {"lineHeight": "34px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .step-active .step-line { background-color: #0044a3; }
+        .step-active .step-circle { border-color: #0044a3; background-color: #0044a3; color: white; }
+        .step-pending .step-circle { border-color: #c3c6d5; background-color: white; color: #737784; }
+        .step-completed .step-circle { background-color: #0044a3; color: white; }
+        
+        body {
+            background-color: #fcf9f8;
+            color: #1c1b1b;
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid #e5e5e5;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="min-h-screen flex flex-col">
+<!-- Top App Bar -->
+<header class="bg-surface dark:bg-background docked full-width top-0 z-50 border-b border-outline-variant/50 shadow-sm dark:shadow-none flex items-center justify-between px-container-padding-mobile py-2 w-full max-w-full">
+<div class="flex items-center gap-4">
+<button class="active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-primary dark:text-primary-fixed">arrow_back</span>
+</button>
+<h1 class="font-headline-md text-headline-md-mobile dark:text-on-background font-bold text-primary dark:text-primary-fixed">Missão Ativa</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A professional close-up headshot of a friendly user for a digital service platform profile. The lighting is soft and natural, emphasizing a trustworthy and efficient professional look. The background is a clean, minimalist studio setting with neutral tones. High-end corporate photography style consistent with a modern service marketplace aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOCvjX6-jhHMu5ZKVFxrInRf5LDYJZtyadQzQHiejIfgErImSbH6DEMpJUUS8AElF0r4or47DqX0QXIiyfNbG893I3h_2FwSGwar_k2BESsyXkevX2mOJlfUuQH7sFW885B_9bJ66bo0WlrsAkwj5kyrWg__LZnUBFl44q-GF6i1fA6wPa_TXdME1lYUGX0pRs2Mwi6MQdAR143CXTjK_yXunk9INYnopmvFzhKev9UoI8TvvNaKBM">
+</div>
+</header>
+<main class="flex-grow pb-32">
+<!-- Mini-Map Section -->
+<section class="w-full h-48 relative overflow-hidden">
+<div class="bg-cover bg-center w-full h-full brightness-90" data-location="Luanda, Angola" style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuBExdHqv-BAynAf7U7ZckWteFBRKk0Sv7rtzQtsrBl76oWBz7Z7rlt0rglDgAPU3ASA4W8kocBVwtBbitCuVYhiYA9758vjPO_cf8e68_LuTeGhqdJUvpTWG7QgTJerGNmxePaKjTC5vBOLmVhiogvEAeQFnNJ9PBW6v05gcz9VANthT7HHggvkFPaq-N-o19FSgjy0FPEHzQvVyDEZXiT5QQ2DITsVSiG1Q3EKWUn4ccHzXQ_kFkrx')"></div>
+<div class="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/50 to-transparent">
+<div class="flex items-center gap-2 text-white">
+<span class="material-symbols-outlined text-sm">location_on</span>
+<span class="font-label-md text-label-md">Centralidade do Kilamba, Luanda</span>
+</div>
+</div>
+</section>
+<div class="px-container-padding-mobile mt-stack-md">
+<!-- Client Quick Contact Card -->
+<div class="glass-card rounded-2xl p-4 flex items-center justify-between shadow-[0_4px_24px_0_rgba(0,0,0,0.04)] mb-stack-lg">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 rounded-full overflow-hidden bg-primary-fixed flex items-center justify-center">
+<img class="w-full h-full object-cover" data-alt="A portrait of a middle-aged Angolan client with a friendly and professional expression. The photo is set against a clean, light grey background with soft, professional lighting. The aesthetic is modern, corporate, and minimalist, conveying trust and reliability for a service-based marketplace application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-KTyxz3eRuFrbs_XFQdu5J3Vqh22zv6_64tBMvwdtpva4TFgx5aIhSi2ibVviWbZPF9P0QWZs3qcIBdprCIymvXIPpCoYB1H0aPCSsfly6psfKNn_zQODoC7y_B7-iULgts_3nLXHTe3CdbNBMK9y1ErZ1iZfDQtJYJsQRBLNFbcPP9PpYdLAVwULYR-YWHzk845CWpmD5L7Zb_ixvyW2IUg8xG-Nhp9oX_htn_9kI1pTXYoZ2d3n">
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant">Cliente</p>
+<h2 class="font-headline-md text-headline-md-mobile text-on-surface">Manuel dos Santos</h2>
+</div>
+</div>
+<div class="flex gap-2">
+<button class="w-10 h-10 rounded-full border border-primary text-primary flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">call</span>
+</button>
+<button class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center active:scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">chat</span>
+</button>
+</div>
+</div>
+<!-- Mission Details Card -->
+<div class="bg-white rounded-2xl p-4 border border-outline-variant/30 mb-stack-lg shadow-sm">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline-md text-headline-md-mobile text-on-surface">Entrega de Encomenda</h3>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-sm font-label-sm">
+                        Kz 4.500
+                    </div>
+</div>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Recolher documento no cartório e entregar na morada indicada no mapa.</p>
+<div class="flex gap-4 border-t border-outline-variant/20 pt-4">
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-label-sm">Até às 14:00</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">distance</span>
+<span class="text-label-sm">2.4 km total</span>
+</div>
+</div>
+</div>
+<!-- Checklist Timeline -->
+<div class="space-y-0 relative">
+<!-- Step 1: Completed -->
+<div class="flex gap-4 relative pb-8">
+<div class="absolute left-[19px] top-10 bottom-0 w-0.5 bg-primary"></div>
+<div class="z-10 w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white shrink-0 shadow-md">
+<span class="material-symbols-outlined">check</span>
+</div>
+<div class="pt-1">
+<h4 class="font-label-md text-label-md text-on-surface-variant font-bold">Início da Missão</h4>
+<p class="text-label-sm text-outline">Concluído às 10:15</p>
+</div>
+</div>
+<!-- Step 2: Active -->
+<div class="flex gap-4 relative pb-8">
+<div class="absolute left-[19px] top-10 bottom-0 w-0.5 bg-outline-variant"></div>
+<div class="z-10 w-10 h-10 rounded-full border-2 border-primary bg-white flex items-center justify-center text-primary shrink-0">
+<span class="font-bold">2</span>
+</div>
+<div class="pt-1">
+<h4 class="font-headline-md text-headline-md-mobile text-primary font-bold">Chegada ao Local</h4>
+<p class="text-body-md text-on-surface-variant">Confirme sua chegada no ponto de recolha.</p>
+<div class="mt-4 bg-surface-container-low rounded-xl p-3 flex items-center gap-3 border border-outline-variant/30">
+<span class="material-symbols-outlined text-primary">info</span>
+<p class="text-label-sm text-on-surface-variant">O cliente está à sua espera na portaria.</p>
+</div>
+</div>
+</div>
+<!-- Step 3: Pending -->
+<div class="flex gap-4 relative pb-8">
+<div class="absolute left-[19px] top-10 bottom-0 w-0.5 bg-outline-variant"></div>
+<div class="z-10 w-10 h-10 rounded-full border-2 border-outline-variant bg-white flex items-center justify-center text-outline shrink-0">
+<span class="font-bold">3</span>
+</div>
+<div class="pt-1">
+<h4 class="font-label-md text-label-md text-outline">Recolha de Recibo</h4>
+<p class="text-label-sm text-outline">Tire uma foto nítida do comprovativo.</p>
+</div>
+</div>
+<!-- Step 4: Pending -->
+<div class="flex gap-4 relative">
+<div class="z-10 w-10 h-10 rounded-full border-2 border-outline-variant bg-white flex items-center justify-center text-outline shrink-0">
+<span class="font-bold">4</span>
+</div>
+<div class="pt-1">
+<h4 class="font-label-md text-label-md text-outline">Validação Final</h4>
+<p class="text-label-sm text-outline">Solicite o código de entrega ao cliente.</p>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Action Area -->
+<div class="fixed bottom-0 left-0 w-full p-container-padding-mobile bg-white/90 backdrop-blur-md border-t border-outline-variant/30 z-50">
+<button class="w-full h-[56px] bg-primary text-white rounded-full font-headline-md text-headline-md-mobile shadow-lg active:scale-95 transition-all duration-200 flex items-center justify-center gap-2" id="primaryAction">
+<span class="material-symbols-outlined">location_on</span>
+            Cheguei ao Local
+        </button>
+<p class="text-center text-label-sm text-on-surface-variant mt-3">A sua localização está a ser partilhada com o cliente.</p>
+</div>
+<!-- Navigation Shell Placeholder (Not visible on task focused page as per mandate) -->
+<script>
+        const states = [
+            { text: "Cheguei ao Local", icon: "location_on", step: 2 },
+            { text: "Enviar Foto do Recibo", icon: "photo_camera", step: 3 },
+            { text: "Solicitar Validação", icon: "verified", step: 4 }
+        ];
+        
+        let currentState = 0;
+        const actionBtn = document.getElementById('primaryAction');
+
+        actionBtn.addEventListener('click', () => {
+            currentState = (currentState + 1) % states.length;
+            const config = states[currentState];
+            
+            // Update button with some visual feedback
+            actionBtn.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                actionBtn.style.transform = 'scale(1)';
+                actionBtn.innerHTML = `<span class="material-symbols-outlined">${config.icon}</span> ${config.text}`;
+                
+                // Color change logic for urgent states if needed
+                if(currentState === 1) {
+                    actionBtn.classList.remove('bg-primary');
+                    actionBtn.classList.add('bg-secondary-container', 'text-on-secondary-container');
+                } else if(currentState === 2) {
+                   actionBtn.classList.remove('bg-secondary-container', 'text-on-secondary-container');
+                   actionBtn.classList.add('bg-primary', 'text-white');
+                }
+            }, 150);
+        });
+    </script>
+</body></html>
