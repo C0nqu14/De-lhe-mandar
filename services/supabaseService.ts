@@ -21,8 +21,7 @@ export const supabaseService = {
         .from('profiles')
         .insert({
           id: authData.user.id,
-          email,
-          display_name: displayName,
+          full_name: displayName,
           role,
         })
         .select()
@@ -120,11 +119,11 @@ export const supabaseService = {
     }
   },
 
-  onAuthStateChange(callback: (user: any) => void) {
+  onAuthStateChange(callback: (user: (SupabaseUser & { id: string }) | null) => void) {
     const { data } = supabase.auth.onAuthStateChange(async (event, session) => {
       if (session?.user) {
         const profile = await this.getProfile(session.user.id);
-        callback({ ...session.user, profile });
+        callback({ ...profile, id: session.user.id });
       } else {
         callback(null);
       }

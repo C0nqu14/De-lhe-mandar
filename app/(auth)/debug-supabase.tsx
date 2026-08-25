@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import { View, Text, TextInput, Pressable, StyleSheet, SafeAreaView, ScrollView, Alert } from 'react-native';
-import { sessionService } from '@/services/sessionService';
 import { Colors } from '@/constants/Colors';
+import { sessionService } from '@/services/sessionService';
+import { useState } from 'react';
+import { Alert, Pressable, SafeAreaView, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function DebugSupabaseScreen() {
   const [email, setEmail] = useState('');
@@ -45,15 +45,6 @@ export default function DebugSupabaseScreen() {
       setResult(`✗ Sign In Erro:\n${error instanceof Error ? error.message : String(error)}`);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleMockSignIn = async () => {
-    try {
-      const session = sessionService.signIn(role);
-      setResult(`✓ Mock Sign In OK\nUserID: ${session?.userId}\nRole: ${session?.role}\nName: ${session?.displayName}`);
-    } catch (error) {
-      setResult(`✗ Erro:\n${error instanceof Error ? error.message : String(error)}`);
     }
   };
 
@@ -142,16 +133,6 @@ export default function DebugSupabaseScreen() {
             disabled={loading}
           >
             <Text style={styles.buttonText}>{loading ? '⏳ Carregando...' : '✓ Sign In (Real)'}</Text>
-          </Pressable>
-        </View>
-
-        <View style={styles.section}>
-          <Text style={styles.sectionTitle}>⚡ Teste Rápido (Mock)</Text>
-          <Pressable
-            style={[styles.button, styles.buttonSecondary]}
-            onPress={handleMockSignIn}
-          >
-            <Text style={styles.buttonText}>✓ Sign In (Mock)</Text>
           </Pressable>
         </View>
 

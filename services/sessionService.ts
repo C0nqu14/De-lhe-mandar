@@ -14,26 +14,12 @@ export const sessionService = {
   },
 
   async signIn(role: UserRole, email?: string, password?: string) {
-    try {
-      // If email and password provided, use Supabase
-      if (email && password) {
-        const { user, profile } = await supabaseService.signIn(email, password);
-        currentProfile = profile;
-        session = {
-          userId: user.id,
-          role: profile.role,
-          displayName: profile.display_name,
-        };
-      } else {
-        // Fallback to mock for testing
-        session = role === 'CLIENT'
-          ? { userId: 'client-ana', role, displayName: 'Ana M.' }
-          : { userId: 'executor-marcos', role, displayName: 'Marcos A.' };
-      }
-      return session;
-    } catch (error) {
-      throw error;
-    }
+    if (!email || !password) throw new Error(`Informe email e palavra-passe para entrar como ${role === 'CLIENT' ? 'Cota' : 'Nengue'}.`);
+    const { user, profile } = await supabaseService.signIn(email, password);
+    if (profile.role !== role) throw new Error('Esta conta pertence ao outro perfil.');
+    currentProfile = profile;
+    session = { userId: user.id, role: profile.role, displayName: profile.full_name };
+    return session;
   },
 
   async signUp(email: string, password: string, displayName: string, role: UserRole) {
@@ -43,7 +29,7 @@ export const sessionService = {
       session = {
         userId: user.id,
         role: profile.role,
-        displayName: profile.display_name,
+        displayName: profile.full_name,
       };
       return session;
     } catch (error) {
@@ -53,16 +39,9 @@ export const sessionService = {
 
   async signOut() {
     try {
-      if (session?.userId.startsWith('client-') || session?.userId.startsWith('executor-')) {
-        // Mock session, just clear
-        session = null;
-        currentProfile = null;
-      } else {
-        // Real Supabase session
-        await supabaseService.signOut();
-        session = null;
-        currentProfile = null;
-      }
+      await supabaseService.signOut();
+      session = null;
+      currentProfile = null;
     } catch (error) {
       throw error;
     }
@@ -77,7 +56,7 @@ export const sessionService = {
         session = {
           userId: currentUser.id,
           role: profile.role,
-          displayName: profile.display_name,
+          displayName: profile.full_name,
         };
         return session;
       }
@@ -90,14 +69,14 @@ export const sessionService = {
 
   onAuthStateChange(callback: (session: MockSession | null) => void) {
     return supabaseService.onAuthStateChange((user) => {
-      if (user?.profile) {
+      if (user) {
         const newSession: MockSession = {
           userId: user.id,
-          role: user.profile.role,
-          displayName: user.profile.display_name,
+          role: user.role,
+          displayName: user.full_name,
         };
         session = newSession;
-        currentProfile = user.profile;
+        currentProfile = user;
         callback(newSession);
       } else {
         session = null;
