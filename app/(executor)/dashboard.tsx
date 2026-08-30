@@ -1,3 +1,4 @@
+import { useEffect, useState, useCallback } from 'react';
 import { MissionCard } from '@/components/MissionCard';
 import { palette } from '@/constants/Theme';
 import { useMissions } from '@/hooks/useMission';
@@ -5,77 +6,131 @@ import { missionService } from '@/services/missionService';
 import { sessionService } from '@/services/sessionService';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, ActivityIndicator, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomNavigation } from '@/components/BottomNavigation';
 
 export default function ExecutorDashboard() {
   const missions = useMissions();
   const userId = sessionService.get()?.userId;
+  const userName = sessionService.get()?.displayName || 'Nengue';
+
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
   const available = missions.filter((m) => m.status === 'AVAILABLE');
-  const myActive = missions.filter((m) => m.executorId === userId && ['ACCEPTED', 'IN_PROGRESS'].includes(m.status));
-  const earnings = missions.filter((m) => m.executorId === userId && m.status === 'COMPLETED').reduce((t, m) => t + m.serviceAmount, 0);
-  const walletTotal = 12450;
+  const myActive = missions.filter((m) => m.executorId === userId && ['ACCEPTED', 'IN_PROGRESS', 'AWAITING_CONFIRMATION'].includes(m.status));
+  const earnings = missions
+    .filter((m) => m.executorId === userId && m.status === 'COMPLETED')
+    .reduce((t, m) => t + m.serviceAmount, 0);
+
+  const fetchMissions = useCallback(async () => {
+    try {
+      await missionService.refreshAvailableMissions();
+    } catch (error) {
+      console.error('[NENGUE DASHBOARD] Erro ao carregar missões:', error);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchMissions();
+  }, [fetchMissions]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchMissions();
+  };
+
+  const handleAcceptMission = async (id: string) => {
+    try {
+      await missionService.acceptMission(id);
+      router.push({ pathname: '/(executor)/mission/details', params: { id } });
+    } catch (err: any) {
+      alert(err.message || 'Não foi possível aceitar a missão.');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
       <View style={styles.appbar}>
         <View style={styles.user}>
           <View style={styles.avatar}>
-            <Text style={styles.avatarText}>{(sessionService.get()?.displayName || 'N').slice(0, 1)}</Text>
+            <Text style={styles.avatarText}>{userName.slice(0, 1).toUpperCase()}</Text>
           </View>
           <View>
-            <Text style={styles.greet}>Olá, Nengue</Text>
+            <Text style={styles.greet}>Olá, {userName.split(' ')[0]}</Text>
             <Text style={styles.subGreet}>Pronto para trabalhar?</Text>
           </View>
         </View>
         <View style={styles.walletChip}>
           <Ionicons name="wallet-outline" size={14} color={palette.primary} />
-          <Text style={styles.walletText}>{walletTotal.toLocaleString('pt-AO')} Kz</Text>
+          <Text style={styles.walletText}>{earnings.toLocaleString('pt-AO')} Kz</Text>
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
-        {/* Resumo Hoje - match HTML */}
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[palette.primary]} />}
+      >
+        {/* Resumo Hoje */}
         <View style={styles.summary}>
           <View style={styles.summaryTop}>
-            <Text style={styles.summaryLabel}>GANHOS DE HOJE</Text>
+            <Text style={styles.summaryLabel}>GANHOS TOTAIS</Text>
             <View style={styles.trend}>
               <Ionicons name="trending-up" size={12} color="#008545" />
-              <Text style={styles.trendText}>+12%</Text>
+              <Text style={styles.trendText}>Ativo</Text>
             </View>
           </View>
           <Text style={styles.summaryAmount}>{earnings.toLocaleString('pt-AO')} Kz</Text>
-          <Text style={styles.summaryMeta}>{myActive.length} missões • 3 concluídas</Text>
+          <Text style={styles.summaryMeta}>{myActive.length} em andamento</Text>
         </View>
 
         {/* Tabs */}
         <View style={styles.tabs}>
-          <View style={[styles.tab, styles.tabActive]}><Text style={styles.tabTextActive}>Missões Disponíveis</Text></View>
-          <Pressable style={styles.tab}><Text style={styles.tabText}>Minhas</Text></Pressable>
-          <Pressable style={styles.tab}><Text style={styles.tabText}>Histórico</Text></Pressable>
-          <Pressable style={styles.tab}><Text style={styles.tabText}>Ganhos</Text></Pressable>
+          <View style={[styles.tab, styles.tabActive]}>
+            <Text style={styles.tabTextActive}>Disponíveis ({available.length})</Text>
+          </View>
+          <Pressable style={styles.tab} onPress={() => router.push('/(executor)/available-missions')}>
+            <Text style={styles.tabText}>Em Andamento ({myActive.length})</Text>
+          </Pressable>
         </View>
 
         <Text style={styles.section}>Disponíveis agora</Text>
-        {available.length === 0 ? (
+
+        {loading ? (
+          <View style={styles.empty}>
+            <ActivityIndicator size="small" color={palette.primary} />
+            <Text style={styles.emptyText}>Procurando missões na sua área...</Text>
+          </View>
+        ) : available.length === 0 ? (
           <View style={styles.empty}>
             <Ionicons name="search-outline" size={24} color={palette.outline} />
             <Text style={styles.emptyText}>Nenhuma missão disponível agora.</Text>
           </View>
         ) : (
           available.slice(0, 6).map((mission) => (
-            <MissionCard key={mission.id} mission={mission} onPress={() => router.push(`/(executor)/mission/details?id=${mission.id}`)} onAccept={() => void missionService.acceptMission(mission.id)} />
+            <MissionCard
+              key={mission.id}
+              mission={mission}
+              onPress={() => router.push({ pathname: '/(executor)/mission/details', params: { id: mission.id } })}
+              onAccept={() => handleAcceptMission(mission.id)}
+            />
           ))
         )}
 
-        <Pressable onPress={() => router.push('/(executor)/available-missions')}>
-          <Text style={styles.link}>Ver todas as missões</Text>
-        </Pressable>
+        {available.length > 0 && (
+          <Pressable onPress={() => router.push('/(executor)/available-missions')}>
+            <Text style={styles.link}>Ver todas as missões</Text>
+          </Pressable>
+        )}
       </ScrollView>
 
       {/* FAB Map */}
-      <Pressable style={styles.fab}>
+      <Pressable style={styles.fab} onPress={() => router.push('/(executor)/available-missions')}>
         <Ionicons name="map" size={22} color={palette.onPrimary} />
       </Pressable>
 

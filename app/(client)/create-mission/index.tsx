@@ -1,69 +1,106 @@
-import { router } from 'expo-router';
 import { useState } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import { palette, radius } from '@/constants/Theme';
-import { missionDraft } from '@/services/missionDraft';
+import { router } from 'expo-router';
 import { AppHeader } from '@/components/AppHeader';
 import { ProgressBar } from '@/components/ui/ProgressDots';
+import { palette, radius } from '@/constants/Theme';
+import { missionDraft } from '@/services/missionDraft';
 
 const chips = ['Compras', 'Fila', 'Gás', 'Documentos', 'Entregas', 'Outros'];
 
 export default function StepOne() {
-  const [title, setTitle] = useState(missionDraft.title);
-  const [description, setDescription] = useState(missionDraft.description);
-  const [category, setCategory] = useState('Compras');
+  const [title, setTitle] = useState(missionDraft.title || '');
+  const [description, setDescription] = useState(missionDraft.description || '');
+  const [category, setCategory] = useState(missionDraft.category || 'Compras');
 
   const next = () => {
-    missionDraft.title = title;
-    missionDraft.description = description;
+    if (!title.trim()) {
+      alert('Por favor, informe o título da missão.');
+      return;
+    }
+
+    missionDraft.title = title.trim();
+    missionDraft.description = description.trim();
+    missionDraft.category = category;
+
     router.push('/(client)/create-mission/step-two');
   };
 
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <AppHeader title="Criar Missão" onBack={() => router.back()} />
+      
       <View style={styles.progressWrap}>
         <Text style={styles.progressLabel}>Passo 1 de 6 • O que precisa?</Text>
         <ProgressBar current={1} total={6} />
       </View>
 
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
+      <ScrollView 
+        contentContainerStyle={styles.content} 
+        keyboardShouldPersistTaps="handled" 
+        showsVerticalScrollIndicator={false}
+      >
         <Text style={styles.h1}>O que precisa que façamos?</Text>
         <Text style={styles.sub}>Descreva com clareza para atrair o Nengue ideal.</Text>
 
         <View style={styles.field}>
           <Text style={styles.label}>Título da missão</Text>
           <View style={styles.inputWrap}>
-            <TextInput value={title} onChangeText={setTitle} placeholder="Ex: Fila no banco BIC" placeholderTextColor={palette.outline} style={styles.input} />
+            <TextInput 
+              value={title} 
+              onChangeText={setTitle} 
+              placeholder="Ex: Fila no banco BIC" 
+              placeholderTextColor={palette.outline} 
+              style={styles.input} 
+            />
           </View>
         </View>
 
         <View style={styles.field}>
           <Text style={styles.label}>Detalhes</Text>
           <View style={[styles.inputWrap, styles.textareaWrap]}>
-            <TextInput value={description} onChangeText={setDescription} multiline placeholder="Acrescente todos os detalhes importantes" placeholderTextColor={palette.outline} style={[styles.input, styles.textarea]} textAlignVertical="top" />
+            <TextInput 
+              value={description} 
+              onChangeText={setDescription} 
+              multiline 
+              placeholder="Acrescente todos os detalhes importantes" 
+              placeholderTextColor={palette.outline} 
+              style={[styles.input, styles.textarea]} 
+              textAlignVertical="top" 
+            />
           </View>
         </View>
 
         <Text style={styles.label}>Categoria</Text>
         <View style={styles.chips}>
           {chips.map((c) => (
-            <Pressable key={c} onPress={() => setCategory(c)} style={[styles.chip, category === c && styles.chipActive]}>
+            <Pressable 
+              key={c} 
+              onPress={() => setCategory(c)} 
+              style={[styles.chip, category === c && styles.chipActive]}
+            >
               <Text style={[styles.chipText, category === c && styles.chipTextActive]}>{c}</Text>
             </Pressable>
           ))}
         </View>
 
         <View style={styles.tip}>
-          <View style={styles.tipIcon}><Ionicons name="bulb-outline" size={16} color={palette.primary} /></View>
-          <Text style={styles.tipText}>Dica: quanto mais detalhes, mais rápido o Nengue aceita. Inclua tamanho, peso ou urgência.</Text>
+          <View style={styles.tipIcon}>
+            <Ionicons name="bulb-outline" size={16} color={palette.primary} />
+          </View>
+          <Text style={styles.tipText}>
+            Dica: quanto mais detalhes, mais rápido o Nengue aceita. Inclua tamanho, peso ou urgência.
+          </Text>
         </View>
       </ScrollView>
 
       <View style={styles.footer}>
-        <Pressable onPress={next} style={({ pressed }) => [styles.btn, pressed && { transform: [{ scale: 0.98 }] }]}>
+        <Pressable 
+          onPress={next} 
+          style={({ pressed }) => [styles.btn, pressed && { transform: [{ scale: 0.98 }] }]}
+        >
           <Text style={styles.btnText}>Continuar</Text>
           <Ionicons name="arrow-forward" size={18} color={palette.onSecondaryContainer} />
         </Pressable>
