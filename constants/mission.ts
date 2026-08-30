@@ -1,6 +1,4 @@
 import { MissionStatus } from '@/types/mission';
-export const CURRENT_CLIENT_ID = 'client-ana';
-export const CURRENT_EXECUTOR_ID = 'executor-marcos';
 export const missionTransitions: Record<MissionStatus, MissionStatus[]> = { CREATED: ['AVAILABLE', 'CANCELLED'], AVAILABLE: ['ACCEPTED', 'CANCELLED'], ACCEPTED: ['IN_PROGRESS', 'CANCELLED'], IN_PROGRESS: ['AWAITING_CONFIRMATION', 'CANCELLED'], AWAITING_CONFIRMATION: ['COMPLETED', 'DISPUTED'], COMPLETED: [], CANCELLED: [], DISPUTED: [] };
 export const checkpointLabels: Record<MissionStatus, string> = { CREATED: 'Missão criada', AVAILABLE: 'Publicada', ACCEPTED: 'Executor aceitou', IN_PROGRESS: 'Em execução', AWAITING_CONFIRMATION: 'Aguardando confirmação', COMPLETED: 'Missão concluída', CANCELLED: 'Missão cancelada', DISPUTED: 'Em disputa' };
 export const checkpointDescriptions: Record<MissionStatus, string> = { CREATED: 'A missão foi criada pela Cota.', AVAILABLE: 'A missão está disponível para um Nengue.', ACCEPTED: 'Um Nengue foi atribuído à missão.', IN_PROGRESS: 'O Nengue está a caminho ou no local.', AWAITING_CONFIRMATION: 'Aguarda o código de confirmação da Cota.', COMPLETED: 'A Cota confirmou a conclusão.', CANCELLED: 'A missão foi cancelada.', DISPUTED: 'A missão foi marcada para revisão.' };

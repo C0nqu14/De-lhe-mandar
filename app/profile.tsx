@@ -1,6 +1,111 @@
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from 'react-native';
-import { Colors } from '@/constants/Colors';
-export default function ProfileScreen() { return <SafeAreaView style={styles.safe}><View style={styles.content}><Pressable onPress={() => router.back()} style={styles.back}><Ionicons name="arrow-back" size={24} color={Colors.light.text} /><Text style={styles.backText}>Perfil</Text></Pressable><View style={styles.avatar}><Text style={styles.initials}>AM</Text></View><Text style={styles.name}>Ana M.</Text><Text style={styles.role}>Cota desde 2026</Text><View style={styles.stats}><View><Text style={styles.number}>12</Text><Text style={styles.caption}>Missões criadas</Text></View><View><Text style={styles.number}>4.9</Text><Text style={styles.caption}>Avaliação média</Text></View></View><View style={styles.menu}><Pressable style={styles.menuItem} onPress={() => router.push('/history')}><Ionicons name="time-outline" size={22} color={Colors.light.tint} /><Text style={styles.menuText}>Histórico de missões</Text><Ionicons name="chevron-forward" size={18} color="#999" /></Pressable><Pressable style={styles.menuItem}><Ionicons name="settings-outline" size={22} color={Colors.light.tint} /><Text style={styles.menuText}>Definições</Text><Ionicons name="chevron-forward" size={18} color="#999" /></Pressable></View></View></SafeAreaView>; }
-const styles = StyleSheet.create({ safe: { flex: 1, backgroundColor: '#FCF9F8' }, content: { padding: 20 }, back: { flexDirection: 'row', alignItems: 'center', gap: 13, marginBottom: 40 }, backText: { color: Colors.light.text, fontSize: 25, fontWeight: '800' }, avatar: { alignSelf: 'center', width: 96, height: 96, borderRadius: 48, backgroundColor: '#D9E2FF', alignItems: 'center', justifyContent: 'center' }, initials: { color: Colors.light.tint, fontSize: 29, fontWeight: '800' }, name: { color: Colors.light.text, textAlign: 'center', fontSize: 23, fontWeight: '800', marginTop: 14 }, role: { color: Colors.light.icon, textAlign: 'center', marginTop: 4 }, stats: { flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#FFF', padding: 18, borderRadius: 14, marginTop: 28 }, number: { textAlign: 'center', color: Colors.light.tint, fontSize: 22, fontWeight: '800' }, caption: { color: Colors.light.icon, marginTop: 3, fontSize: 12 }, menu: { marginTop: 20, backgroundColor: '#FFF', borderRadius: 14 }, menuItem: { flexDirection: 'row', alignItems: 'center', padding: 17, borderBottomWidth: 1, borderBottomColor: '#F0EDED', gap: 12 }, menuText: { color: Colors.light.text, fontSize: 15, fontWeight: '600', flex: 1 } });
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { palette } from '@/constants/Theme';
+import { sessionService } from '@/services/sessionService';
+
+export default function ProfileScreen() {
+  const profile = sessionService.getProfile();
+  const name = profile?.full_name || 'António Manuel';
+  const roleLabel = profile?.role === 'EXECUTOR' ? 'Nengue' : 'Cota';
+
+  return (
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <View style={styles.appbar}>
+        <Pressable onPress={() => router.back()} hitSlop={12}><Ionicons name="arrow-back" size={22} color={palette.primary} /></Pressable>
+        <Text style={styles.appbarTitle}>Perfil</Text>
+        <Pressable onPress={() => router.push('/(client)/notifications')}><Ionicons name="settings-outline" size={20} color={palette.onSurfaceVariant} /></Pressable>
+      </View>
+
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <View style={styles.header}>
+          <View style={styles.avatarWrap}>
+            <View style={styles.avatar}><Text style={styles.initials}>{name.slice(0, 2).toUpperCase()}</Text></View>
+            <Pressable style={styles.editFab}><Ionicons name="pencil" size={14} color={palette.onPrimary} /></Pressable>
+          </View>
+          <Text style={styles.name}>{name}</Text>
+          <View style={styles.ratingPill}>
+            <Ionicons name="star" size={14} color={palette.secondary} />
+            <Text style={styles.ratingText}>4.9 • {roleLabel} desde 2026</Text>
+          </View>
+        </View>
+
+        <View style={styles.stats}>
+          <View style={styles.statCard}>
+            <Text style={styles.statValue}>Kz 45.000</Text>
+            <Text style={styles.statLabel}>Total gasto</Text>
+          </View>
+          <View style={styles.statCard}>
+            <Text style={styles.statValue}>12</Text>
+            <Text style={styles.statLabel}>Missões ativas</Text>
+          </View>
+        </View>
+
+        <View style={styles.menu}>
+          <Pressable style={styles.menuItem} onPress={() => router.push('/history')}>
+            <View style={styles.menuIcon}><Ionicons name="time-outline" size={18} color={palette.primary} /></View>
+            <Text style={styles.menuText}>Histórico de missões</Text>
+            <Ionicons name="chevron-forward" size={18} color={palette.outline} />
+          </Pressable>
+          <Pressable style={styles.menuItem}>
+            <View style={styles.menuIcon}><Ionicons name="wallet-outline" size={18} color={palette.primary} /></View>
+            <Text style={styles.menuText}>Pagamentos</Text>
+            <Ionicons name="chevron-forward" size={18} color={palette.outline} />
+          </Pressable>
+          <Pressable style={styles.menuItem}>
+            <View style={styles.menuIcon}><Ionicons name="briefcase-outline" size={18} color={palette.primary} /></View>
+            <View style={{ flex: 1, flexDirection: 'row', gap: 8, alignItems: 'center' }}>
+              <Text style={styles.menuText}>Tornar-se Nengue</Text>
+              <View style={styles.badge}><Text style={styles.badgeText}>Novo</Text></View>
+            </View>
+            <Ionicons name="chevron-forward" size={18} color={palette.outline} />
+          </Pressable>
+          <Pressable style={styles.menuItem}>
+            <View style={styles.menuIcon}><Ionicons name="help-circle-outline" size={18} color={palette.primary} /></View>
+            <Text style={styles.menuText}>Ajuda</Text>
+            <Ionicons name="chevron-forward" size={18} color={palette.outline} />
+          </Pressable>
+          <Pressable style={styles.menuItem}>
+            <View style={styles.menuIcon}><Ionicons name="document-text-outline" size={18} color={palette.primary} /></View>
+            <Text style={styles.menuText}>Termos</Text>
+            <Ionicons name="chevron-forward" size={18} color={palette.outline} />
+          </Pressable>
+        </View>
+
+        <Pressable onPress={() => void sessionService.signOut().then(() => router.replace('/(auth)/login'))} style={styles.logout}>
+          <Text style={styles.logoutText}>Terminar Sessão</Text>
+        </Pressable>
+        <Text style={styles.version}>v1.0.0 • De Lhe Mandar</Text>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: palette.background },
+  appbar: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', paddingHorizontal: 16, paddingVertical: 12, backgroundColor: palette.surface, borderBottomWidth: 1, borderBottomColor: 'rgba(195,198,213,0.3)' },
+  appbarTitle: { color: palette.onSurface, fontSize: 18, fontWeight: '700' },
+  content: { paddingHorizontal: 16, paddingBottom: 24 },
+  header: { alignItems: 'center', paddingVertical: 24 },
+  avatarWrap: { position: 'relative' },
+  avatar: { width: 96, height: 96, borderRadius: 48, backgroundColor: palette.primaryFixed, alignItems: 'center', justifyContent: 'center', borderWidth: 3, borderColor: palette.surfaceContainerLowest },
+  initials: { color: palette.primary, fontSize: 28, fontWeight: '800' },
+  editFab: { position: 'absolute', right: -4, bottom: 0, width: 28, height: 28, borderRadius: 14, backgroundColor: palette.primary, alignItems: 'center', justifyContent: 'center', borderWidth: 2, borderColor: palette.surfaceContainerLowest },
+  name: { color: palette.onSurface, fontSize: 22, fontWeight: '800', marginTop: 12 },
+  ratingPill: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 8, backgroundColor: palette.surfaceContainerLow, paddingHorizontal: 12, paddingVertical: 6, borderRadius: 9999 },
+  ratingText: { color: palette.onSurfaceVariant, fontSize: 12, fontWeight: '600' },
+  stats: { flexDirection: 'row', gap: 12 },
+  statCard: { flex: 1, backgroundColor: palette.surfaceContainerLowest, borderRadius: 16, padding: 16, alignItems: 'center', borderWidth: 1, borderColor: 'rgba(195,198,213,0.2)' },
+  statValue: { color: palette.primary, fontSize: 18, fontWeight: '800' },
+  statLabel: { color: palette.onSurfaceVariant, fontSize: 12, marginTop: 4 },
+  menu: { backgroundColor: palette.surfaceContainerLowest, borderRadius: 24, marginTop: 16, overflow: 'hidden', borderWidth: 1, borderColor: 'rgba(195,198,213,0.2)' },
+  menuItem: { flexDirection: 'row', alignItems: 'center', padding: 16, gap: 12, borderBottomWidth: 1, borderBottomColor: palette.surfaceVariant },
+  menuIcon: { width: 36, height: 36, borderRadius: 10, backgroundColor: 'rgba(0,68,163,0.08)', alignItems: 'center', justifyContent: 'center' },
+  menuText: { flex: 1, color: palette.onSurface, fontSize: 15, fontWeight: '500' },
+  badge: { backgroundColor: palette.secondaryContainer, paddingHorizontal: 8, paddingVertical: 3, borderRadius: 9999 },
+  badgeText: { color: palette.onSecondaryContainer, fontSize: 10, fontWeight: '700' },
+  logout: { height: 56, borderRadius: 9999, borderWidth: 1, borderColor: palette.error, alignItems: 'center', justifyContent: 'center', marginTop: 16 },
+  logoutText: { color: palette.error, fontWeight: '700' },
+  version: { textAlign: 'center', color: palette.outline, fontSize: 12, marginTop: 12 },
+});

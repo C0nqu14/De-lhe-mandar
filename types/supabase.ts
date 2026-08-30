@@ -6,8 +6,7 @@ export type Database = {
       profiles: {
         Row: {
           id: string;
-          email: string;
-          display_name: string;
+          full_name: string;
           role: 'CLIENT' | 'EXECUTOR';
           avatar_url: string | null;
           phone: string | null;
@@ -16,8 +15,7 @@ export type Database = {
         };
         Insert: {
           id?: string;
-          email: string;
-          display_name: string;
+          full_name: string;
           role: 'CLIENT' | 'EXECUTOR';
           avatar_url?: string | null;
           phone?: string | null;
@@ -26,8 +24,7 @@ export type Database = {
         };
         Update: {
           id?: string;
-          email?: string;
-          display_name?: string;
+          full_name?: string;
           role?: 'CLIENT' | 'EXECUTOR';
           avatar_url?: string | null;
           phone?: string | null;
@@ -46,6 +43,10 @@ export type Database = {
           total_amount: number;
           scheduled_at: string;
           status: string;
+                    accepted_at: string | null;
+                    started_at: string | null;
+                    completed_at: string | null;
+                    cancelled_at: string | null;
           created_at: string;
           updated_at: string;
         };
@@ -60,6 +61,10 @@ export type Database = {
           total_amount: number;
           scheduled_at: string;
           status?: string;
+                    accepted_at?: string | null;
+                    started_at?: string | null;
+                    completed_at?: string | null;
+                    cancelled_at?: string | null;
           created_at?: string;
           updated_at?: string;
         };
@@ -73,6 +78,10 @@ export type Database = {
           purchase_amount?: number;
           total_amount?: number;
           scheduled_at?: string;
+                    accepted_at?: string | null;
+                    started_at?: string | null;
+                    completed_at?: string | null;
+                    cancelled_at?: string | null;
           status?: string;
           updated_at?: string;
         };
@@ -119,7 +128,7 @@ export type Database = {
           latitude: number;
           longitude: number;
           accuracy: number | null;
-          updated_at: string;
+          created_at: string;
         };
         Insert: {
           id?: string;
@@ -128,7 +137,7 @@ export type Database = {
           latitude: number;
           longitude: number;
           accuracy?: number | null;
-          updated_at?: string;
+          created_at?: string;
         };
       };
       mission_confirmations: {
@@ -215,6 +224,13 @@ export type Database = {
           created_at?: string;
         };
       };
+    };
+    Functions: {
+      accept_mission: { Args: { p_mission_id: string }; Returns: Database['public']['Tables']['missions']['Row'] };
+      advance_mission: { Args: { p_mission_id: string; p_action: string }; Returns: Database['public']['Tables']['missions']['Row'] };
+      request_mission_confirmation: { Args: { p_mission_id: string }; Returns: undefined };
+      confirm_mission: { Args: { p_mission_id: string; p_value: string }; Returns: Database['public']['Tables']['missions']['Row'] };
+      cancel_mission: { Args: { p_mission_id: string }; Returns: Database['public']['Tables']['missions']['Row'] };
     };
   };
 };
