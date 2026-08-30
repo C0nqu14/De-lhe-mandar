@@ -1,12 +1,22 @@
+import { AppHeader } from '@/components/AppHeader';
+import { ProgressBar } from '@/components/ui/ProgressDots';
+import { palette } from '@/constants/Theme';
+import { missionDraft } from '@/services/missionDraft';
+import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Ionicons } from '@expo/vector-icons';
-import { palette } from '@/constants/Theme';
-import { AppHeader } from '@/components/AppHeader';
-import { ProgressBar } from '@/components/ui/ProgressDots';
 
 export default function StepFour() {
+  const handleNoPurchase = () => {
+    missionDraft.purchaseAmount = 0;
+    router.push('/(client)/create-mission/price');
+  };
+
+  const handleHasPurchase = () => {
+    router.push('/(client)/create-mission/purchase-value');
+  };
+
   return (
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <AppHeader title="Criar Missão" onBack={() => router.back()} />
@@ -20,14 +30,24 @@ export default function StepFour() {
         <Text style={styles.sub}>Pode indicar o valor estimado na próxima etapa.</Text>
 
         <View style={styles.grid}>
-          <Pressable onPress={() => router.push('/(client)/create-mission/price')} style={({ pressed }) => [styles.choice, pressed && { transform: [{ scale: 0.98 }] }]}>
-            <View style={styles.choiceIcon}><Ionicons name="close" size={24} color={palette.onSurfaceVariant} /></View>
+          <Pressable
+            onPress={handleNoPurchase}
+            style={({ pressed }) => [styles.choice, pressed && { transform: [{ scale: 0.98 }] }]}
+          >
+            <View style={styles.choiceIcon}>
+              <Ionicons name="close" size={24} color={palette.onSurfaceVariant} />
+            </View>
             <Text style={styles.choiceLabel}>Não</Text>
             <Text style={styles.choiceDesc}>Apenas serviço</Text>
           </Pressable>
 
-          <Pressable onPress={() => router.push('/(client)/create-mission/purchase-value')} style={({ pressed }) => [styles.choice, styles.choicePrimary, pressed && { transform: [{ scale: 0.98 }] }]}>
-            <View style={[styles.choiceIcon, styles.choiceIconPrimary]}><Ionicons name="cart" size={24} color={palette.onPrimary} /></View>
+          <Pressable
+            onPress={handleHasPurchase}
+            style={({ pressed }) => [styles.choice, styles.choicePrimary, pressed && { transform: [{ scale: 0.98 }] }]}
+          >
+            <View style={[styles.choiceIcon, styles.choiceIconPrimary]}>
+              <Ionicons name="cart" size={24} color={palette.onPrimary} />
+            </View>
             <Text style={[styles.choiceLabel, styles.choiceLabelPrimary]}>Sim</Text>
             <Text style={[styles.choiceDesc, styles.choiceDescPrimary]}>Compras incluídas</Text>
           </Pressable>
@@ -35,7 +55,9 @@ export default function StepFour() {
       </View>
 
       <View style={styles.footer}>
-        <Pressable onPress={() => router.back()} style={styles.secondaryBtn}><Text style={styles.secondaryText}>Anterior</Text></Pressable>
+        <Pressable onPress={() => router.back()} style={styles.secondaryBtn}>
+          <Text style={styles.secondaryText}>Anterior</Text>
+        </Pressable>
         <View style={{ flex: 1 }} />
       </View>
     </SafeAreaView>

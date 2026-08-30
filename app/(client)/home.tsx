@@ -1,10 +1,12 @@
+import { useEffect, useState, useCallback } from 'react';
 import { MissionCard } from '@/components/MissionCard';
 import { palette } from '@/constants/Theme';
 import { useMissions } from '@/hooks/useMission';
+import { missionService } from '@/services/missionService';
 import { sessionService } from '@/services/sessionService';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
-import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { Pressable, ScrollView, StyleSheet, Text, View, ActivityIndicator, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { BottomNavigation } from '@/components/BottomNavigation';
 
@@ -17,8 +19,33 @@ const categories = [
 ];
 
 export default function ClientHome() {
-  const missions = useMissions().filter((m) => m.clientId === sessionService.get()?.userId);
-  const name = sessionService.get()?.displayName?.split(' ')[0] || 'João';
+  const currentUserId = sessionService.get()?.userId;
+  const name = sessionService.get()?.displayName?.split(' ')[0] || 'Cliente';
+  const allMissions = useMissions();
+  const missions = allMissions.filter((m) => m.clientId === currentUserId);
+
+  const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
+
+  const fetchMissions = useCallback(async () => {
+    try {
+      await missionService.refreshClientMissions();
+    } catch (error) {
+      console.error('[HOME] Erro ao carregar missões:', error);
+    } finally {
+      setLoading(false);
+      setRefreshing(false);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchMissions();
+  }, [fetchMissions]);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    fetchMissions();
+  };
 
   return (
     <SafeAreaView style={styles.safe} edges={['top']}>
@@ -35,11 +62,18 @@ export default function ClientHome() {
         </View>
       </View>
 
-      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+      <ScrollView
+        contentContainerStyle={styles.content}
+        showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={[palette.primary]} />}
+      >
         {/* Hero */}
         <View style={styles.hero}>
           <Text style={styles.heroTitle}>O que precisa que façamos por si hoje?</Text>
-          <Pressable onPress={() => router.push('/(client)/create-mission')} style={({ pressed }) => [styles.heroBtn, pressed && { transform: [{ scale: 0.98 }] }]}>
+          <Pressable
+            onPress={() => router.push('/(client)/create-mission')}
+            style={({ pressed }) => [styles.heroBtn, pressed && { transform: [{ scale: 0.98 }] }]}
+          >
             <Ionicons name="add-circle-outline" size={20} color={palette.onSecondary} />
             <Text style={styles.heroBtnText}>Criar Missão</Text>
           </Pressable>
@@ -68,15 +102,26 @@ export default function ClientHome() {
           </Pressable>
         </View>
 
-        {missions.length === 0 ? (
+        {loading ? (
+          <View style={styles.empty}>
+            <ActivityIndicator size="small" color={palette.primary} />
+            <Text style={styles.emptyText}>A carregar missões...</Text>
+          </View>
+        ) : missions.length === 0 ? (
           <View style={styles.empty}>
             <Ionicons name="document-outline" size={28} color={palette.outline} />
             <Text style={styles.emptyText}>Ainda não tem missões ativas.</Text>
           </View>
         ) : (
-          missions.slice(0, 4).map((mission) => (
-            <MissionCard key={mission.id} mission={mission} onPress={() => router.push({ pathname: '/(client)/mission/[id]', params: { id: mission.id } })} />
-          ))
+          missions
+            .slice(0, 4)
+            .map((mission) => (
+              <MissionCard
+                key={mission.id}
+                mission={mission}
+                onPress={() => router.push({ pathname: '/(client)/mission/[id]', params: { id: mission.id } })}
+              />
+            ))
         )}
 
         {/* Sugestões */}
@@ -98,6 +143,7 @@ export default function ClientHome() {
           </View>
         </View>
       </ScrollView>
+
       <BottomNavigation />
     </SafeAreaView>
   );

@@ -1,26 +1,60 @@
+import { useState } from 'react';
+import { Alert, ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
+import { AppHeader } from '@/components/AppHeader';
+import { ProgressBar } from '@/components/ui/ProgressDots';
 import { palette, radius } from '@/constants/Theme';
 import { missionDraft } from '@/services/missionDraft';
 import { missionService } from '@/services/missionService';
-import { Ionicons } from '@expo/vector-icons';
-import { router } from 'expo-router';
-import { useState } from 'react';
-import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { AppHeader } from '@/components/AppHeader';
-import { ProgressBar } from '@/components/ui/ProgressDots';
 
 export default function PriceStep() {
   const [service, setService] = useState(String(missionDraft.serviceAmount || ''));
-  const total = (Number(service) || 0) + missionDraft.purchaseAmount;
-  const fee = Math.round((Number(service) || 0) * 0.1);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const numericService = Number(service) || 0;
+  const total = numericService + (missionDraft.purchaseAmount || 0);
+  const fee = Math.round(numericService * 0.1);
   const quick = [2000, 5000, 10000];
 
   const publish = async () => {
+    if (numericService <= 0) {
+      Alert.alert('Valor Inválido', 'Por favor, insira um valor válido para o serviço.');
+      return;
+    }
+
     try {
-      missionDraft.serviceAmount = Number(service) || 0;
-      await missionService.create(missionDraft);
+      setIsSubmitting(true);
+      missionDraft.serviceAmount = numericService;
+
+      await missionService.create({
+        title: missionDraft.title || 'Nova Missão',
+        description: missionDraft.description || '',
+        location: missionDraft.location || '',
+        scheduledAt: missionDraft.scheduledAt || new Date().toISOString(),
+        serviceAmount: missionDraft.serviceAmount,
+        purchaseAmount: missionDraft.purchaseAmount || 0,
+        destinationLocation: missionDraft.destinationLocation,
+      });
+
+      // Reset do rascunho após criação com sucesso
+      missionDraft.title = '';
+      missionDraft.description = '';
+      missionDraft.location = '';
+      missionDraft.serviceAmount = 0;
+      missionDraft.purchaseAmount = 0;
+      missionDraft.destinationLocation = undefined;
+
+      // Recarrega lista e redireciona
+      await missionService.refreshClientMissions();
       router.replace('/(client)/home');
-    } catch {}
+    } catch (error: any) {
+      console.error('[CREATE MISSION] Erro ao criar missão:', error);
+      Alert.alert('Erro', error.message || 'Não foi possível publicar a missão. Tente novamente.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -37,22 +71,49 @@ export default function PriceStep() {
 
         <View style={styles.currencyCard}>
           <Text style={styles.kz}>Kz</Text>
-          <TextInput value={service} onChangeText={setService} keyboardType="numeric" placeholder="0,00" placeholderTextColor={palette.outline} style={styles.currencyInput} />
+          <TextInput
+            value={service}
+            onChangeText={setService}
+            keyboardType="numeric"
+            placeholder="0,00"
+            placeholderTextColor={palette.outline}
+            style={styles.currencyInput}
+            editable={!isSubmitting}
+          />
         </View>
 
         <View style={styles.quick}>
           {quick.map((v) => (
-            <Pressable key={v} onPress={() => setService(String(v))} style={[styles.quickChip, service === String(v) && styles.quickActive]}>
-              <Text style={[styles.quickText, service === String(v) && styles.quickTextActive]}>{v.toLocaleString('pt-AO')} Kz</Text>
+            <Pressable
+              key={v}
+              onPress={() => setService(String(v))}
+              disabled={isSubmitting}
+              style={[styles.quickChip, service === String(v) && styles.quickActive]}
+            >
+              <Text style={[styles.quickText, service === String(v) && styles.quickTextActive]}>
+                {v.toLocaleString('pt-AO')} Kz
+              </Text>
             </Pressable>
           ))}
         </View>
 
         <View style={styles.summary}>
-          <View style={styles.row}><Text style={styles.label}>Valor do serviço</Text><Text style={styles.value}>{(Number(service) || 0).toLocaleString('pt-AO')} Kz</Text></View>
-          <View style={styles.row}><Text style={styles.label}>Compras estimadas</Text><Text style={styles.value}>{missionDraft.purchaseAmount.toLocaleString('pt-AO')} Kz</Text></View>
-          <View style={styles.row}><Text style={styles.label}>Taxa (10%)</Text><Text style={styles.value}>{fee.toLocaleString('pt-AO')} Kz</Text></View>
-          <View style={styles.total}><Text style={styles.totalLabel}>Total estimado</Text><Text style={styles.totalValue}>{total.toLocaleString('pt-AO')} Kz</Text></View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Valor do serviço</Text>
+            <Text style={styles.value}>{numericService.toLocaleString('pt-AO')} Kz</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Compras estimadas</Text>
+            <Text style={styles.value}>{(missionDraft.purchaseAmount || 0).toLocaleString('pt-AO')} Kz</Text>
+          </View>
+          <View style={styles.row}>
+            <Text style={styles.label}>Taxa (10%)</Text>
+            <Text style={styles.value}>{fee.toLocaleString('pt-AO')} Kz</Text>
+          </View>
+          <View style={styles.total}>
+            <Text style={styles.totalLabel}>Total estimado</Text>
+            <Text style={styles.totalValue}>{total.toLocaleString('pt-AO')} Kz</Text>
+          </View>
           <View style={styles.trust}>
             <Ionicons name="lock-closed-outline" size={14} color={palette.primary} />
             <Text style={styles.trustText}>Pagamento protegido • Só liberta após confirmação</Text>
@@ -61,9 +122,23 @@ export default function PriceStep() {
       </ScrollView>
 
       <View style={styles.footer}>
-        <Pressable onPress={() => router.back()} style={styles.secondaryBtn}><Text style={styles.secondaryText}>Anterior</Text></Pressable>
-        <Pressable onPress={() => void publish()} disabled={!service} style={({ pressed }) => [styles.primaryBtn, (!service || pressed) && { opacity: !service ? 0.5 : 0.9 }, pressed && { transform: [{ scale: 0.98 }] }]}>
-          <Text style={styles.primaryText}>Publicar Missão</Text>
+        <Pressable onPress={() => router.back()} disabled={isSubmitting} style={styles.secondaryBtn}>
+          <Text style={styles.secondaryText}>Anterior</Text>
+        </Pressable>
+        <Pressable
+          onPress={() => void publish()}
+          disabled={!numericService || isSubmitting}
+          style={({ pressed }) => [
+            styles.primaryBtn,
+            (!numericService || isSubmitting) && { opacity: 0.5 },
+            pressed && !isSubmitting && { transform: [{ scale: 0.98 }] },
+          ]}
+        >
+          {isSubmitting ? (
+            <ActivityIndicator color={palette.onPrimary} size="small" />
+          ) : (
+            <Text style={styles.primaryText}>Publicar Missão</Text>
+          )}
         </Pressable>
       </View>
     </SafeAreaView>
