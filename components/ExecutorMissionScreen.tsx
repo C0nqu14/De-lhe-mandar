@@ -1,3 +1,115 @@
-import { router, useLocalSearchParams } from 'expo-router'; import { useEffect, useState } from 'react'; import { Pressable, SafeAreaView, ScrollView, StyleSheet, Text } from 'react-native'; import { MissionMap } from '@/components/MissionMap'; import { MissionTimeline } from '@/components/MissionTimeline'; import { Colors } from '@/constants/Colors'; import { useMission } from '@/hooks/useMission'; import { useMissionLocation } from '@/hooks/useMissionLocation'; import { missionService } from '@/services/missionService';
-export default function ExecutorMissionScreen() { const { id = 'docs-02' } = useLocalSearchParams<{ id: string }>(); const mission = useMission(id); const onWay = mission.checkpoints.some((item) => item.description === 'O Nengue está a caminho.'); const tracking = onWay || mission.status === 'IN_PROGRESS'; const { location, permissionGranted, error } = useMissionLocation(tracking); const [actionError, setActionError] = useState(''); useEffect(() => { if (location && mission.executorId) missionService.setExecutorLocation(mission.id, { ...location, updatedAt: new Date().toISOString() }); }, [location, mission.executorId, mission.id]); const run = (callback: () => void) => { try { setActionError(''); callback(); } catch (caught) { setActionError(caught instanceof Error ? caught.message : 'Não foi possível avançar a missão.'); } }; const action: { label: string; run: () => void } | null = mission.status === 'ACCEPTED' && !onWay ? { label: 'Estou a caminho', run: () => missionService.startTravel(mission.id) } : mission.status === 'ACCEPTED' && onWay ? { label: 'Cheguei ao local', run: () => { if (!location || !permissionGranted) throw new Error('Precisamos da sua localização para confirmar a chegada.'); missionService.arriveAtMission(mission.id, location); } } : mission.status === 'IN_PROGRESS' ? { label: 'Finalizar missão', run: () => { missionService.requestCompletion(mission.id); router.push(`/(executor)/mission/confirmation?id=${mission.id}`); } } : null; return <SafeAreaView style={styles.safe}><ScrollView contentContainerStyle={styles.content}><Text style={styles.title}>{mission.title}</Text><Text style={styles.location}>{mission.location} · {mission.scheduledAt}</Text><MissionMap destination={mission.destinationLocation} executorLocation={mission.executorLocation} status={onWay ? 'A caminho' : mission.status} /><Text style={styles.description}>{mission.description}</Text><Text style={styles.section}>Checklist da missão</Text><MissionTimeline mission={mission} />{error ? <Text style={styles.error}>{error}</Text> : null}{actionError ? <Text style={styles.error}>{actionError}</Text> : null}{action && <Pressable style={styles.button} onPress={() => run(action.run)}><Text style={styles.buttonText}>{action.label}</Text></Pressable>}{mission.status === 'AWAITING_CONFIRMATION' && <Pressable style={styles.outline} onPress={() => router.push(`/(executor)/mission/confirmation?id=${mission.id}`)}><Text style={styles.outlineText}>Digitalizar QR ou usar OTP</Text></Pressable>}</ScrollView></SafeAreaView>; }
-const styles = StyleSheet.create({ safe: { flex: 1, backgroundColor: '#FCF9F8' }, content: { padding: 20, paddingTop: 60 }, title: { color: Colors.light.text, fontSize: 29, fontWeight: '800' }, location: { color: Colors.light.icon, marginTop: 8 }, description: { color: Colors.light.icon, fontSize: 16, lineHeight: 24, marginTop: 22 }, section: { color: Colors.light.text, fontSize: 20, fontWeight: '800', marginTop: 30, marginBottom: 18 }, button: { backgroundColor: Colors.light.secondary, height: 54, borderRadius: 13, justifyContent: 'center', alignItems: 'center', marginTop: 20 }, buttonText: { color: '#FFF', fontSize: 16, fontWeight: '800' }, outline: { borderWidth: 1, borderColor: Colors.light.tint, height: 54, borderRadius: 13, justifyContent: 'center', alignItems: 'center', marginTop: 20 }, outlineText: { color: Colors.light.tint, fontWeight: '800' }, error: { color: '#BA1A1A', marginTop: 12 } });
+import { AppHeader } from '@/components/AppHeader';
+import { MissionMap } from '@/components/MissionMap';
+import { MissionTimeline } from '@/components/MissionTimeline';
+import { Card } from '@/components/ui/Card';
+import { palette } from '@/constants/Theme';
+import { useMission } from '@/hooks/useMission';
+import { useMissionLocation } from '@/hooks/useMissionLocation';
+import { missionService } from '@/services/missionService';
+import { Ionicons } from '@expo/vector-icons';
+import { router, useLocalSearchParams } from 'expo-router';
+import { useEffect, useState } from 'react';
+import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
+export default function ExecutorMissionScreen() {
+  const { id = 'docs-02' } = useLocalSearchParams<{ id: string }>();
+  const mission = useMission(id);
+  const onWay = mission.checkpoints.some((item) => item.description === 'O Nengue está a caminho.');
+  const tracking = onWay || mission.status === 'IN_PROGRESS';
+  const { location, permissionGranted, error } = useMissionLocation(tracking);
+  const [actionError, setActionError] = useState('');
+
+  useEffect(() => {
+    if (location && mission.executorId) missionService.setExecutorLocation(mission.id, { ...location, updatedAt: new Date().toISOString() });
+  }, [location, mission.executorId, mission.id]);
+
+  const run = (callback: () => void) => {
+    try {
+      setActionError('');
+      callback();
+    } catch (caught) {
+      setActionError(caught instanceof Error ? caught.message : 'Não foi possível avançar a missão.');
+    }
+  };
+
+  const action: { label: string; run: () => void } | null =
+    mission.status === 'ACCEPTED' && !onWay
+      ? { label: 'Estou a caminho', run: () => missionService.startTravel(mission.id) }
+      : mission.status === 'ACCEPTED' && onWay
+        ? {
+            label: 'Cheguei ao local',
+            run: () => {
+              if (!location || !permissionGranted) throw new Error('Precisamos da sua localização para confirmar a chegada.');
+              missionService.arriveAtMission(mission.id, location);
+            },
+          }
+        : mission.status === 'IN_PROGRESS'
+          ? {
+              label: 'Finalizar missão',
+              run: () => {
+                missionService.requestCompletion(mission.id);
+                router.push(`/(executor)/mission/confirmation?id=${mission.id}`);
+              },
+            }
+          : null;
+
+  return (
+    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+      <AppHeader title="Missão Ativa" onBack={() => router.back()} />
+      <ScrollView contentContainerStyle={styles.content} showsVerticalScrollIndicator={false}>
+        <Card>
+          <View style={styles.badgeRow}>
+            <View style={styles.badge}><Text style={styles.badgeText}>Em curso</Text></View>
+            <Text style={styles.price}>{mission.serviceAmount.toLocaleString('pt-AO')} Kz</Text>
+          </View>
+          <Text style={styles.title}>{mission.title}</Text>
+          <Text style={styles.location}>{mission.location} · {mission.scheduledAt}</Text>
+          <Text style={styles.description}>{mission.description}</Text>
+        </Card>
+
+        <View style={{ marginTop: 16 }}>
+          <MissionMap destination={mission.destinationLocation} executorLocation={mission.executorLocation} status={onWay ? 'A caminho' : mission.status} />
+        </View>
+
+        <Text style={styles.section}>Checklist da missão</Text>
+        <View style={styles.timelineCard}><MissionTimeline mission={mission} /></View>
+
+        {error ? <Text style={styles.error}>{error}</Text> : null}
+        {actionError ? <Text style={styles.error}>{actionError}</Text> : null}
+
+        {action && (
+          <Pressable onPress={() => run(action.run)} style={({ pressed }) => [styles.btn, pressed && { transform: [{ scale: 0.98 }] }]}>
+            <Text style={styles.btnText}>{action.label}</Text>
+            <Ionicons name="arrow-forward" size={18} color={palette.onPrimary} />
+          </Pressable>
+        )}
+
+        {mission.status === 'AWAITING_CONFIRMATION' ? (
+          <Pressable onPress={() => router.push(`/(executor)/mission/confirmation?id=${mission.id}`)} style={styles.outline}>
+            <Text style={styles.outlineText}>Ver confirmação</Text>
+          </Pressable>
+        ) : null}
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
+const styles = StyleSheet.create({
+  safe: { flex: 1, backgroundColor: palette.background },
+  content: { padding: 16, paddingBottom: 32 },
+  badgeRow: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' },
+  badge: { backgroundColor: 'rgba(0,68,163,0.1)', paddingHorizontal: 10, paddingVertical: 5, borderRadius: 9999 },
+  badgeText: { color: palette.primary, fontSize: 11, fontWeight: '700' },
+  price: { color: palette.primary, fontWeight: '800' },
+  title: { color: palette.onSurface, fontSize: 20, fontWeight: '700', marginTop: 12 },
+  location: { color: palette.onSurfaceVariant, marginTop: 6, fontSize: 13 },
+  description: { color: palette.onSurfaceVariant, fontSize: 14, lineHeight: 20, marginTop: 10 },
+  section: { color: palette.onSurface, fontSize: 18, fontWeight: '700', marginTop: 24, marginBottom: 12 },
+  timelineCard: { backgroundColor: palette.surfaceContainerLowest, borderRadius: 16, padding: 16, borderWidth: 1, borderColor: 'rgba(195,198,213,0.2)' },
+  btn: { backgroundColor: palette.primary, height: 56, borderRadius: 9999, justifyContent: 'center', alignItems: 'center', marginTop: 20, flexDirection: 'row', gap: 8 },
+  btnText: { color: palette.onPrimary, fontSize: 14, fontWeight: '700' },
+  outline: { borderWidth: 1, borderColor: palette.primary, height: 56, borderRadius: 9999, justifyContent: 'center', alignItems: 'center', marginTop: 12 },
+  outlineText: { color: palette.primary, fontWeight: '700' },
+  error: { color: palette.error, marginTop: 12, fontSize: 13 },
+});

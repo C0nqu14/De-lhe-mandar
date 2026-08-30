@@ -1,4 +1,35 @@
 import { StyleSheet, Text, View } from 'react-native';
-import { Colors } from '@/constants/Colors';
-export function MissionPriceBreakdown({ serviceAmount, purchaseAmount }: { serviceAmount: number; purchaseAmount: number }) { return <View style={styles.box}><Text style={styles.line}>Serviço <Text>{serviceAmount.toLocaleString('pt-AO')} Kz</Text></Text><Text style={styles.line}>Compras estimadas <Text>{purchaseAmount.toLocaleString('pt-AO')} Kz</Text></Text><Text style={styles.total}>Total estimado <Text>{(serviceAmount + purchaseAmount).toLocaleString('pt-AO')} Kz</Text></Text></View>; }
-const styles = StyleSheet.create({ box: { backgroundColor: '#EAF0FF', borderRadius: 14, padding: 16 }, line: { color: Colors.light.icon, marginVertical: 4 }, total: { borderTopWidth: 1, borderTopColor: '#C3D2F5', paddingTop: 10, marginTop: 8, color: Colors.light.text, fontWeight: '800' } });
+import { palette } from '@/constants/Theme';
+export function MissionPriceBreakdown({ serviceAmount, purchaseAmount }: { serviceAmount: number; purchaseAmount: number }) {
+  const total = serviceAmount + purchaseAmount;
+  const fee = Math.round(serviceAmount * 0.1);
+  return (
+    <View style={styles.box}>
+      <View style={styles.row}>
+        <Text style={styles.label}>Valor do serviço</Text>
+        <Text style={styles.value}>{serviceAmount.toLocaleString('pt-AO')} Kz</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.label}>Compras estimadas</Text>
+        <Text style={styles.value}>{purchaseAmount.toLocaleString('pt-AO')} Kz</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.label}>Taxa (10%)</Text>
+        <Text style={styles.value}>{fee.toLocaleString('pt-AO')} Kz</Text>
+      </View>
+      <View style={styles.total}>
+        <Text style={styles.totalLabel}>Total estimado</Text>
+        <Text style={styles.totalValue}>{total.toLocaleString('pt-AO')} Kz</Text>
+      </View>
+    </View>
+  );
+}
+const styles = StyleSheet.create({
+  box: { backgroundColor: palette.surfaceContainerLow, borderRadius: 16, padding: 16, borderWidth: 1, borderColor: 'rgba(195,198,213,0.2)' },
+  row: { flexDirection: 'row', justifyContent: 'space-between', marginVertical: 5 },
+  label: { color: palette.onSurfaceVariant, fontSize: 14 },
+  value: { color: palette.onSurface, fontWeight: '700', fontSize: 14 },
+  total: { borderTopWidth: 1, borderTopColor: palette.outlineVariant, paddingTop: 12, marginTop: 8, flexDirection: 'row', justifyContent: 'space-between' },
+  totalLabel: { color: palette.onSurface, fontWeight: '800' },
+  totalValue: { color: palette.primary, fontSize: 18, fontWeight: '800' },
+});
